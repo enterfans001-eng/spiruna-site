@@ -1,33 +1,26 @@
 "use client";
 import { useEffect, useRef } from "react";
 
-const values = [
-  { num: "01", title: "TikTok V特化", desc: "TikTokに最適化したコンテンツ戦略・運営サポート・成長導線を提供。従来の配信アプリ主軸の事務所とは一線を画します。" },
-  { num: "02", title: "クリエイター支援", desc: "ライバーマネジメント・イベント運営・クリエイター支援のノウハウを基盤に、タレントの可能性を最大限に引き出します。" },
-  { num: "03", title: "テクノロジー活用", desc: "最新のテクノロジーとデータ分析を活用し、タレントの成長を科学的にサポート。コンテンツの最適化を追求します。" },
-  { num: "04", title: "グローバル展開", desc: "TikTokのグローバルプラットフォームを活かし、日本発のバーチャルタレントを世界へ届けます。" },
-];
-
 const pillars = [
   {
     num: "01",
-    title: "Discover",
-    titleJa: "発掘",
-    desc: "埋もれた才能を見つけ出す。TikTokという新しいステージで輝ける原石を、私たちは世界中から探し続ける。",
+    title: "Value",
+    titleJa: "TikTok V特化",
+    desc: "TikTok V No.1レーベル「SPIRUNA」は最速で伸びるためのコンテンツ戦略・運営サポート・成長導線を提供。",
     accent: "#ff0033",
   },
   {
     num: "02",
-    title: "Develop",
-    titleJa: "育成",
-    desc: "個性を磨き、コンテンツ力を高める。マーケティング・演技・配信技術——プロとして必要なすべてをサポート。",
+    title: "Support",
+    titleJa: "特待生制度あり",
+    desc: "SPIRUNAでは、過去配信実績があるクリエイター限定で高性能ゲーミングPCの無料貸出を行っております。詳しくは当事務所までお問い合わせください。",
     accent: "#cc00ff",
   },
   {
     num: "03",
-    title: "Deliver",
-    titleJa: "届ける",
-    desc: "才能を世界へ。TikTokを起点に、YouTubeからリアルイベントまで——ファンとタレントを繋ぐ橋を架ける。",
+    title: "Game",
+    titleJa: "ゲームサポート",
+    desc: "TikTok V配信で定番の妨害サーバー構築から、OBS設定まで当事務所の専門スタッフが対応いたします。",
     accent: "#ff6600",
   },
 ];
@@ -136,22 +129,6 @@ export default function Concept() {
           ))}
         </div>
 
-        {/* Values */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 reveal delay-4" style={{ gap: "1.25rem", marginBottom: "3.5rem" }}>
-          {values.map((v) => (
-            <div key={v.num} className="card-cyber p-6 relative overflow-hidden">
-              <div className="absolute top-3 right-4 pointer-events-none" style={{
-                fontFamily: "var(--font-serif)", fontSize: "3.5rem", fontWeight: 700,
-                color: "rgba(255,0,51,0.05)", lineHeight: 1,
-              }}>{v.num}</div>
-              <div className="mb-3 w-8 h-0.5" style={{ background: "var(--red)" }} />
-              <div className="text-xs font-mono mb-1.5 tracking-widest" style={{ color: "var(--red)" }}>{v.num}</div>
-              <h3 className="heading-serif text-lg mb-2">{v.title}</h3>
-              <p className="text-xs leading-6" style={{ color: "rgba(255,255,255,0.55)" }}>{v.desc}</p>
-            </div>
-          ))}
-        </div>
-
         {/* Mission statement */}
         <div className="reveal delay-4">
           <div style={{ padding: "1px", background: "linear-gradient(90deg, var(--red), transparent 60%)" }}>
@@ -166,7 +143,7 @@ export default function Concept() {
                 <div className="concept-mission-text" style={{ borderLeft: "1px solid rgba(255,0,51,0.2)", paddingLeft: "2rem" }}>
                   <p style={{ fontSize: "0.8125rem", lineHeight: 1.9, color: "rgba(255,255,255,0.55)" }}>
                     どれだけ輝く才能を持っていても、正しい場所と環境がなければ届かない。
-                    SPIRUNAは、タレント一人ひとりの個性と夢を最大限に活かすため、
+                    SPIRUNAは、クリエイター一人ひとりの個性と夢を最大限に活かすため、
                     戦略・技術・コミュニティのすべてを提供します。
                   </p>
                 </div>

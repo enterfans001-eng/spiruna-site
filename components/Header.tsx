@@ -18,11 +18,10 @@ export default function Header() {
   }, []);
 
   const links = [
-    { href: "#concept", label: "Concept" },
-    { href: "#talents", label: "Creators" },
-    { href: "#audition", label: "Audition" },
-    { href: "#news", label: "News" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#concept", label: "Concept" },
+    { href: "/#talents", label: "Creators" },
+    { href: "/#news", label: "News" },
+    { href: "/contact", label: "Contact" },
   ];
 
   return (
@@ -46,7 +45,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           {/* Logo */}
           <a href="/" className="flex items-center" style={{ padding: "4px 0" }}>
-            <span style={{ fontSize: "0.75rem", letterSpacing: "0.2em", color: "var(--text-muted)" }}>SPIRUNA</span>
+            <img src="/logo-spiruna.png" alt="SPIRUNA" style={{ height: 32, width: "auto" }} />
           </a>
 
           {/* Desktop Nav */}
@@ -64,7 +63,7 @@ export default function Header() {
               </a>
             ))}
             <a
-              href="#audition"
+              href="/#audition"
               className="btn-primary text-xs"
             >
               <span>✦</span> AUDITION
@@ -114,7 +113,7 @@ export default function Header() {
                 {l.label}
               </a>
             ))}
-            <a href="#audition" onClick={() => setMenuOpen(false)} className="btn-primary text-xs w-fit">
+            <a href="/#audition" onClick={() => setMenuOpen(false)} className="btn-primary text-xs w-fit">
               <span>✦</span> AUDITION
             </a>
           </div>

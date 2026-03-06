@@ -4,16 +4,16 @@ export default function Footer() {
     {
       label: "Agency",
       links: [
-        { href: "#concept", label: "Concept" },
-        { href: "#talents", label: "Creators" },
-        { href: "#news", label: "News" },
+        { href: "/#concept", label: "Concept" },
+        { href: "/#talents", label: "Creators" },
+        { href: "/#news", label: "News" },
       ],
     },
     {
       label: "Join Us",
       links: [
-        { href: "#audition", label: "Audition" },
-        { href: "#contact", label: "Contact" },
+        { href: "/#audition", label: "Audition" },
+        { href: "/contact", label: "Contact" },
       ],
     },
     {
@@ -44,7 +44,7 @@ export default function Footer() {
             </div>
             <p className="text-xs leading-6" style={{ color: "var(--text-muted)" }}>
               TikTok V Virtual Agency<br />
-              次世代バーチャルタレントの<br />
+              次世代バーチャルクリエイターの<br />
               発掘・育成・マネジメント
             </p>
           </div>
@@ -76,7 +76,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col md:flex-row items-center justify-between" style={{ paddingTop: "2rem", borderTop: "1px solid rgba(255,0,51,0.08)", gap: "1rem" }}>
           <p className="text-xs" style={{ color: "var(--text-muted)" }}>
-            © 2025 SPIRUNA Inc. All rights reserved.
+            © 2026 SPIRUNA Agency. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             {[

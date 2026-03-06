@@ -1,20 +1,48 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Link from "next/link";
-import type { Talent } from "@/lib/talents-data";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import type { Talent } from "@/lib/microcms";
 
 type Props = { talents: Talent[] };
+type SortKey = "default" | "name" | "nameEn" | "debut";
 
 export default function TalentsList({ talents }: Props) {
   const [loaded, setLoaded] = useState(false);
+  const [search, setSearch] = useState("");
+  const [sort, setSort] = useState<SortKey>("default");
 
   useEffect(() => {
     const t = setTimeout(() => setLoaded(true), 100);
     return () => clearTimeout(t);
   }, []);
 
+  const filtered = useMemo(() => {
+    const q = search.toLowerCase().trim();
+    let result = talents;
+    if (q) {
+      result = talents.filter((t) =>
+        t.name.toLowerCase().includes(q) ||
+        t.nameEn.toLowerCase().includes(q) ||
+        t.tag.toLowerCase().includes(q) ||
+        t.talentId.toLowerCase().includes(q)
+      );
+    }
+    if (sort === "name") {
+      result = [...result].sort((a, b) => a.name.localeCompare(b.name, "ja"));
+    } else if (sort === "nameEn") {
+      result = [...result].sort((a, b) => a.nameEn.localeCompare(b.nameEn));
+    } else if (sort === "debut") {
+      result = [...result].sort((a, b) => (a.debutDate || "").localeCompare(b.debutDate || ""));
+    }
+    return result;
+  }, [talents, search, sort]);
+
   return (
-    <div style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--text)" }}>
+    <>
+      <Header />
+      <div style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--text)" }}>
       <style>{`
         .tl-card {
           transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s, border-color 0.3s;
@@ -36,37 +64,38 @@ export default function TalentsList({ talents }: Props) {
         @media (min-width: 641px) and (max-width: 1024px) {
           .tl-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
+        .tl-search:focus { border-color: var(--red) !important; }
+        .tl-search::placeholder { color: var(--text-muted); font-size: 0.8rem; }
+        .tl-sort-btn { transition: background 0.2s, color 0.2s, border-color 0.2s; cursor: pointer; }
+        .tl-sort-btn:hover { border-color: var(--red) !important; }
       `}</style>
 
-      {/* Header */}
-      <header style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        padding: "1rem 2rem",
-        background: "rgba(6,6,8,0.85)", backdropFilter: "blur(16px)",
-        borderBottom: "1px solid rgba(255,0,51,0.12)",
-      }}>
-        <Link href="/#talents" style={{
-          display: "flex", alignItems: "center", gap: "0.75rem",
-          textDecoration: "none", color: "var(--text-muted)",
-          fontSize: "0.75rem", letterSpacing: "0.15em",
-          transition: "color 0.2s",
-        }}>
-          <span style={{ fontSize: "1rem" }}>←</span> TOP
-        </Link>
-        <span style={{
-          fontSize: "0.7rem", letterSpacing: "0.2em",
-          color: "var(--text-muted)", textTransform: "uppercase" as const,
-        }}>
-          CREATORS
-        </span>
-      </header>
-
       {/* Main */}
-      <div style={{ maxWidth: "72rem", margin: "0 auto", padding: "7rem 1.5rem 4rem" }}>
+      <div style={{ maxWidth: "72rem", margin: "0 auto", padding: "8rem 1.5rem 4rem" }}>
+
+        {/* Back to top */}
+        <div style={{
+          marginBottom: "1.5rem",
+          opacity: loaded ? 1 : 0, transform: loaded ? "none" : "translateY(10px)",
+          transition: "opacity 0.6s, transform 0.6s",
+        }}>
+          <Link
+            href="/#talents"
+            style={{
+              display: "inline-flex", alignItems: "center", gap: "0.5rem",
+              fontSize: "0.75rem", letterSpacing: "0.15em",
+              color: "var(--text-muted)", textDecoration: "none",
+              transition: "color 0.2s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text)")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}
+          >
+            <span>←</span> TOP
+          </Link>
+        </div>
 
         {/* Title */}
-        <div style={{ marginBottom: "3rem", textAlign: "center" }}>
+        <div style={{ marginBottom: "2rem", textAlign: "center" }}>
           <p style={{
             fontSize: "0.7rem", letterSpacing: "0.3em", color: "var(--red)",
             marginBottom: "0.75rem", textTransform: "uppercase" as const,
@@ -91,11 +120,63 @@ export default function TalentsList({ talents }: Props) {
           </p>
         </div>
 
+        {/* Search & Sort */}
+        <div style={{
+          display: "flex", flexWrap: "wrap", gap: "1rem", alignItems: "center",
+          justifyContent: "space-between", marginBottom: "2rem",
+          opacity: loaded ? 1 : 0, transform: loaded ? "none" : "translateY(10px)",
+          transition: "opacity 0.6s 0.3s, transform 0.6s 0.3s",
+        }}>
+          <input
+            className="tl-search"
+            type="text"
+            placeholder="名前・タグで検索..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            style={{
+              flex: "1 1 200px", maxWidth: "320px",
+              padding: "0.6rem 1rem",
+              background: "var(--surface)", border: "1px solid var(--border)",
+              color: "var(--text)", fontSize: "0.8rem",
+              outline: "none", transition: "border-color 0.2s",
+            }}
+          />
+          <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+            {([
+              { key: "default", label: "デフォルト" },
+              { key: "name", label: "名前順" },
+              { key: "debut", label: "デビュー順" },
+            ] as { key: SortKey; label: string }[]).map((s) => (
+              <button
+                key={s.key}
+                className="tl-sort-btn"
+                onClick={() => setSort(s.key)}
+                style={{
+                  padding: "0.45rem 1rem",
+                  fontSize: "0.7rem", letterSpacing: "0.1em",
+                  background: sort === s.key ? "var(--red)" : "transparent",
+                  color: sort === s.key ? "#fff" : "var(--text-muted)",
+                  border: sort === s.key ? "1px solid var(--red)" : "1px solid rgba(255,255,255,0.15)",
+                }}
+              >
+                {s.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Result count */}
+        {search && (
+          <p style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginBottom: "1rem" }}>
+            {filtered.length}件のクリエイターが見つかりました
+          </p>
+        )}
+
         {/* Grid */}
         <div className="tl-grid" style={{
           display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem",
         }}>
-          {talents.map((t, i) => (
+          {filtered.map((t, i) => (
             <Link
               key={t.slug}
               href={`/talents/${t.slug}`}
@@ -118,7 +199,7 @@ export default function TalentsList({ talents }: Props) {
                   fontSize: "0.6rem", letterSpacing: "0.15em",
                   color: t.accent, opacity: 0.7,
                 }}>
-                  {t.id}
+                  {t.talentId}
                 </div>
                 <img
                   src={t.fullImg}
@@ -165,26 +246,18 @@ export default function TalentsList({ talents }: Props) {
           ))}
         </div>
 
-        {/* Audition CTA */}
-        <div style={{
-          textAlign: "center", marginTop: "4rem",
-          opacity: loaded ? 1 : 0, transform: loaded ? "none" : "translateY(20px)",
-          transition: "opacity 0.6s 0.5s, transform 0.6s 0.5s",
-        }}>
-          <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginBottom: "1.5rem" }}>
-            あなたも SPIRUNAの一員になりませんか？
-          </p>
-          <Link href="/#audition" style={{
-            display: "inline-block", padding: "0.8rem 2.5rem",
-            background: "var(--red)", color: "#fff",
-            fontSize: "0.75rem", letterSpacing: "0.15em",
-            textDecoration: "none", fontWeight: 600,
-            transition: "opacity 0.2s",
-          }}>
-            ✦ AUDITION
-          </Link>
-        </div>
+        {/* No results */}
+        {filtered.length === 0 && (
+          <div style={{ textAlign: "center", padding: "4rem 0" }}>
+            <p style={{ fontSize: "0.9rem", color: "var(--text-muted)" }}>
+              該当するクリエイターが見つかりませんでした
+            </p>
+          </div>
+        )}
+
       </div>
-    </div>
+      </div>
+      <Footer />
+    </>
   );
 }

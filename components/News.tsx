@@ -2,9 +2,11 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { newsItems } from "@/lib/news-data";
+import type { NewsItem } from "@/lib/microcms";
 
-export default function News() {
+type Props = { newsItems: NewsItem[] };
+
+export default function News({ newsItems }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {

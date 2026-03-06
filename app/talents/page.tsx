@@ -1,4 +1,4 @@
-import { talents } from "@/lib/talents-data";
+import { getTalentsList } from "@/lib/microcms";
 import TalentsList from "@/components/TalentsList";
 
 export const metadata = {
@@ -6,6 +6,9 @@ export const metadata = {
   description: "SPIRUNA所属クリエイターの一覧ページ。",
 };
 
-export default function TalentsPage() {
+export const revalidate = 60;
+
+export default async function TalentsPage() {
+  const talents = await getTalentsList();
   return <TalentsList talents={talents} />;
 }

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import type { NewsItem } from "@/lib/news-data";
+import type { NewsItem } from "@/lib/microcms";
 
 type Props = {
   item: NewsItem;
@@ -142,13 +142,11 @@ export default function NewsDetail({ item, prev, next }: Props) {
           transitionDelay: "0.4s",
           marginBottom: "4rem",
         }}>
-          <div style={{ fontSize: "0.875rem", lineHeight: 2.2, color: "rgba(255,255,255,0.7)" }}>
-            {item.body.split("\n").map((line, i) => (
-              <p key={i} style={{ marginBottom: line.trim() === "" ? "1.5rem" : "0.5rem" }}>
-                {line || "\u00A0"}
-              </p>
-            ))}
-          </div>
+          <div
+            className="microcms-content"
+            style={{ fontSize: "0.875rem", lineHeight: 2.2, color: "rgba(255,255,255,0.7)" }}
+            dangerouslySetInnerHTML={{ __html: item.body }}
+          />
         </div>
 
         {/* Share / Back */}

@@ -1,9 +1,11 @@
 "use client";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { talents } from "@/lib/talents-data";
+import type { Talent } from "@/lib/microcms";
 
-export default function Talents() {
+type Props = { talents: Talent[] };
+
+export default function Talents({ talents }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -28,15 +30,15 @@ export default function Talents() {
         .talent-card:hover { transform: translateY(-10px); box-shadow: 0 30px 80px rgba(0,0,0,0.4); }
         .talent-card .char-full { transition: transform 0.6s cubic-bezier(0.16,1,0.3,1), filter 0.4s; }
         .talent-card:hover .char-full { transform: scale(1.06) translateY(-4px); }
-        .talent-card .char-sd { opacity: 0; transform: translateY(20px) scale(0.8); transition: opacity 0.4s, transform 0.5s cubic-bezier(0.16,1,0.3,1); }
-        .talent-card:hover .char-sd { opacity: 1; transform: translateY(0) scale(1); }
-        .talent-card .name-en-bg { transition: opacity 0.4s, transform 0.6s; opacity: 0; transform: translateY(10px); }
-        .talent-card:hover .name-en-bg { opacity: 1; transform: translateY(0); }
-        .talent-card .accent-line { transform: scaleX(0); transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); transform-origin: left; }
+        .talent-card .char-sd { opacity: 1; transform: translateY(0) scale(1); transition: opacity 0.4s, transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+        .talent-card:hover .char-sd { transform: translateY(-4px) scale(1.1); }
+        .talent-card .name-en-bg { transition: opacity 0.4s, transform 0.6s; opacity: 1; transform: translateY(0); }
+        .talent-card:hover .name-en-bg { opacity: 1; transform: translateY(-4px); }
+        .talent-card .accent-line { transform: scaleX(1); transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); transform-origin: left; }
         .talent-card:hover .accent-line { transform: scaleX(1); }
-        .talent-card .glow-ring { opacity: 0; transition: opacity 0.5s; }
+        .talent-card .glow-ring { opacity: 1; transition: opacity 0.5s; }
         .talent-card:hover .glow-ring { opacity: 1; }
-        .talent-card .tag-badge { opacity: 0; transform: translateX(-10px); transition: opacity 0.3s 0.1s, transform 0.4s 0.1s; }
+        .talent-card .tag-badge { opacity: 1; transform: translateX(0); transition: opacity 0.3s 0.1s, transform 0.4s 0.1s; }
         .talent-card:hover .tag-badge { opacity: 1; transform: translateX(0); }
         @media (max-width: 768px) {
           .talents-grid { grid-template-columns: 1fr !important; }
@@ -62,7 +64,7 @@ export default function Talents() {
         <div className="talents-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
           {talents.map((t, i) => (
             <Link
-              key={t.id}
+              key={t.talentId}
               href={`/talents/${t.slug}`}
               className={`talent-card card-cyber group cursor-pointer reveal delay-${(i % 3) + 1} overflow-hidden`}
               style={{ textDecoration: "none", display: "block" }}
@@ -77,12 +79,17 @@ export default function Talents() {
 
                 {/* Bottom glow */}
                 <div className="absolute inset-0 pointer-events-none" style={{
-                  background: `radial-gradient(ellipse 70% 50% at 50% 100%, ${t.accent}20 0%, transparent 100%)`,
+                  background: `radial-gradient(ellipse 70% 50% at 50% 100%, ${t.accent}35 0%, transparent 100%)`,
                 }} />
 
-                {/* Hover glow ring */}
+                {/* Glow ring */}
                 <div className="glow-ring absolute inset-0 pointer-events-none" style={{
-                  background: `radial-gradient(circle at 50% 80%, ${t.accent}15 0%, transparent 50%)`,
+                  background: `radial-gradient(circle at 50% 80%, ${t.accent}25 0%, transparent 50%)`,
+                }} />
+
+                {/* Top ambient glow */}
+                <div className="absolute inset-0 pointer-events-none" style={{
+                  background: `radial-gradient(ellipse 60% 40% at 50% 0%, ${t.accent}12 0%, transparent 100%)`,
                 }} />
 
                 {/* Background name text */}
@@ -90,21 +97,22 @@ export default function Talents() {
                   bottom: "1rem", left: "50%", transform: "translateX(-50%)",
                   whiteSpace: "nowrap", fontSize: "3rem", fontWeight: 900,
                   fontFamily: "var(--font-heading), serif", letterSpacing: "0.08em",
-                  color: `${t.accent}10`, userSelect: "none", lineHeight: 1,
+                  color: `${t.accent}18`, userSelect: "none", lineHeight: 1,
                 }}>
                   {t.nameEn}
                 </div>
 
                 {/* Full character */}
-                <div className="absolute inset-0 flex items-end justify-center">
+                <div className="absolute inset-0 flex items-start justify-center overflow-hidden">
                   <img
                     src={t.fullImg}
                     alt={t.name}
                     className="char-full relative z-10"
                     style={{
-                      height: "95%",
+                      height: "160%",
                       objectFit: "contain",
-                      objectPosition: "bottom",
+                      objectPosition: "top",
+                      marginTop: "5%",
                       filter: "drop-shadow(0 0 24px rgba(0,0,0,0.5))",
                     }}
                   />
@@ -117,7 +125,7 @@ export default function Talents() {
                     alt={`${t.name} SD`}
                     className="char-sd"
                     style={{
-                      height: 80,
+                      height: 160,
                       objectFit: "contain",
                       filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.6))",
                     }}
@@ -141,7 +149,7 @@ export default function Talents() {
                     fontSize: "0.6rem", letterSpacing: "0.15em", fontFamily: "monospace",
                     color: `${t.accent}80`,
                   }}>
-                    {t.id}
+                    {t.talentId}
                   </span>
                 </div>
 

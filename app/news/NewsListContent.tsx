@@ -2,9 +2,11 @@
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { newsItems } from "@/lib/news-data";
+import type { NewsItem } from "@/lib/microcms";
 
-export default function NewsListContent() {
+type Props = { newsItems: NewsItem[] };
+
+export default function NewsListContent({ newsItems }: Props) {
   return (
     <>
       <Header />

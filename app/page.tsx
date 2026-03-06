@@ -9,8 +9,16 @@ import Contact from "@/components/Contact";
 import Company from "@/components/Company";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
+import { getNewsList, getTalentsList } from "@/lib/microcms";
 
-export default function Home() {
+export const revalidate = 60;
+
+export default async function Home() {
+  const [newsItems, talents] = await Promise.all([
+    getNewsList(),
+    getTalentsList(),
+  ]);
+
   return (
     <>
       <Header />
@@ -18,9 +26,9 @@ export default function Home() {
       <main>
         <Hero />
         <Concept />
-        <Talents />
+        <Talents talents={talents} />
         <Audition />
-        <News />
+        <News newsItems={newsItems} />
 
         <Contact />
         <Company />

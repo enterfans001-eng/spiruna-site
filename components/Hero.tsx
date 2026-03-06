@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export default function Hero() {
   const [loaded, setLoaded] = useState(false);
   const [typedText, setTypedText] = useState("");
-  const fullText = "次世代バーチャルタレントを、世界へ。";
+  const fullText = "次世代バーチャルクリエイターを、世界へ。";
 
   /* ── Load trigger ── */
   useEffect(() => {

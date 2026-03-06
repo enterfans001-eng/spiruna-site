@@ -23,7 +23,7 @@ const orbitron = Orbitron({
 
 export const metadata: Metadata = {
   title: "SPIRUNA | TikTok V Virtual Agency",
-  description: "次世代バーチャルタレントの発掘・育成・マネジメントを行うTikTok V事務所 SPIRUNA。",
+  description: "次世代バーチャルクリエイターの発掘・育成・マネジメントを行うTikTok V事務所 SPIRUNA。",
 };
 
 export default function RootLayout({

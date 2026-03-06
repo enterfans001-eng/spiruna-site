@@ -2,8 +2,8 @@
 import { useEffect, useRef } from "react";
 
 const steps = [
-  { num: "01", label: "エントリー", desc: "フォームから必要事項を入力して応募。" },
-  { num: "02", label: "書類選考", desc: "プロフィール・自己PR動画を審査。1週間以内に結果をお知らせします。" },
+  { num: "01", label: "エントリー", desc: "公式LINEから必要事項を入力して応募。" },
+  { num: "02", label: "書類選考", desc: "プロフィール・志望動機を審査。1週間以内に結果をお知らせします。" },
   { num: "03", label: "面接", desc: "オンライン面接でビジョンと個性を確認。" },
   { num: "04", label: "デビュー", desc: "SPIRUNAの一員として、バーチャルの世界へ。" },
 ];

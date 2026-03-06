@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import type { Talent } from "@/lib/talents-data";
+import type { Talent } from "@/lib/microcms";
 
 type Props = {
   talent: Talent;
@@ -104,8 +104,12 @@ export default function TalentDetail({ talent, prev, next }: Props) {
             bottom: 3rem !important;
           }
           .td-char-sd-wrap {
-            left: 65% !important;
-            bottom: 1rem !important;
+            left: auto !important;
+            right: 0.5rem !important;
+            bottom: 36rem !important;
+          }
+          .td-char-sd-wrap img {
+            height: 130px !important;
           }
           .td-diagonal-edge {
             display: none !important;
@@ -131,7 +135,7 @@ export default function TalentDetail({ talent, prev, next }: Props) {
         background: "rgba(6,6,8,0.85)", backdropFilter: "blur(16px)",
         borderBottom: "1px solid rgba(255,0,51,0.12)",
       }}>
-        <Link href="/#talents" className="td-back-link" style={{
+        <Link href="/talents" className="td-back-link" style={{
           display: "flex", alignItems: "center", gap: "0.75rem",
           textDecoration: "none", color: "var(--text-muted)",
           fontSize: "0.75rem", letterSpacing: "0.15em",
@@ -182,7 +186,7 @@ export default function TalentDetail({ talent, prev, next }: Props) {
             transitionDelay: "1s",
           }}
         >
-          {talent.nameEn} — {talent.id}
+          {talent.nameEn} — {talent.talentId}
         </div>
 
         {/* ─── Diagonal character background ─── */}
@@ -276,7 +280,7 @@ export default function TalentDetail({ talent, prev, next }: Props) {
         <div
           className="td-diagonal-edge"
           style={{
-            position: "absolute", top: 0, bottom: 0, left: 0, width: "65%",
+            position: "absolute", top: 0, bottom: 0, left: 0, width: "52%",
             zIndex: 3, pointerEvents: "none",
             opacity: loaded ? 1 : 0,
           }}
@@ -294,7 +298,7 @@ export default function TalentDetail({ talent, prev, next }: Props) {
         <div
           className="td-char-sd-wrap"
           style={{
-            position: "absolute", bottom: "3rem", left: "42%",
+            position: "absolute", bottom: "6rem", left: "20%",
             zIndex: 20,
             opacity: loaded ? 1 : 0,
             transform: loaded ? "translateY(0) scale(1)" : "translateY(40px) scale(0.8)",
@@ -305,7 +309,7 @@ export default function TalentDetail({ talent, prev, next }: Props) {
               src={talent.sdImg}
               alt={`${talent.name} SD`}
               style={{
-                height: 130, objectFit: "contain",
+                height: 260, objectFit: "contain",
                 filter: "drop-shadow(0 8px 30px rgba(0,0,0,0.7))",
               }}
             />
@@ -349,7 +353,7 @@ export default function TalentDetail({ talent, prev, next }: Props) {
               color: ac, fontSize: "0.6rem", letterSpacing: "0.25em", padding: "0.35rem 1rem",
               fontFamily: "monospace",
             }}>
-              {talent.id}
+              {talent.talentId}
             </div>
           </div>
 
@@ -412,24 +416,6 @@ export default function TalentDetail({ talent, prev, next }: Props) {
             ))}
           </div>
 
-          {/* CTA */}
-          <div className="td-info-item" style={{
-            opacity: loaded ? 1 : 0,
-            transform: loaded ? "translateX(0)" : "translateX(30px)",
-            transitionDelay: "1s",
-          }}>
-            <Link href="/#audition" style={{
-              display: "inline-block", padding: "0.75rem 2.5rem",
-              background: `linear-gradient(135deg, ${ac}, ${ac}cc)`, color: "#000",
-              fontSize: "0.75rem", letterSpacing: "0.2em", fontWeight: 700,
-              textDecoration: "none", textAlign: "center",
-              clipPath: "polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)",
-              transition: "transform 0.2s, box-shadow 0.2s",
-              boxShadow: `0 0 20px ${ac}30`,
-            }}>
-              ✦ AUDITION
-            </Link>
-          </div>
         </div>
 
         {/* ─── Diagonal sweep animation ─── */}

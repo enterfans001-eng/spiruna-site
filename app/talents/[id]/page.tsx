@@ -1,19 +1,24 @@
 import { notFound } from "next/navigation";
-import { talents, getTalentBySlug, getTalentIndex } from "@/lib/talents-data";
+import { getTalentsList, getTalentBySlug } from "@/lib/microcms";
 import TalentDetail from "@/components/TalentDetail";
+
+export const revalidate = 60;
 
 export default async function TalentPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const talent = getTalentBySlug(id);
+  const talent = await getTalentBySlug(id);
   if (!talent) notFound();
 
-  const idx = getTalentIndex(id);
-  const prev = talents[(idx - 1 + talents.length) % talents.length];
-  const next = talents[(idx + 1) % talents.length];
+  const allTalents = await getTalentsList();
+  const idx = allTalents.findIndex((t) => t.slug === id);
+  const len = allTalents.length;
+  const prev = allTalents[(idx - 1 + len) % len];
+  const next = allTalents[(idx + 1) % len];
 
   return <TalentDetail talent={talent} prev={prev} next={next} />;
 }
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const talents = await getTalentsList();
   return talents.map((t) => ({ id: t.slug }));
 }
