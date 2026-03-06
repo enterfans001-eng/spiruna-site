@@ -2,10 +2,16 @@ import { createClient } from "microcms-js-sdk";
 import type { MicroCMSListContent } from "microcms-js-sdk";
 
 // ---------- Client ----------
-export const client = createClient({
-  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN!,
-  apiKey: process.env.MICROCMS_API_KEY!,
-});
+let _client: ReturnType<typeof createClient> | null = null;
+
+function getClient() {
+  if (_client) return _client;
+  const domain = process.env.MICROCMS_SERVICE_DOMAIN;
+  const key = process.env.MICROCMS_API_KEY;
+  if (!domain || !key) return null;
+  _client = createClient({ serviceDomain: domain, apiKey: key });
+  return _client;
+}
 
 // ---------- Types ----------
 
@@ -70,7 +76,9 @@ function formatNews(items: NewsItem[]): NewsItem[] {
 
 export async function getNewsList() {
   try {
-    const data = await client.getList<NewsItem>({
+    const c = getClient();
+    if (!c) return [];
+    const data = await c.getList<NewsItem>({
       endpoint: "news",
       queries: {
         orders: "-date",
@@ -85,7 +93,9 @@ export async function getNewsList() {
 
 export async function getNewsDetail(slug: string) {
   try {
-    const data = await client.getList<NewsItem>({
+    const c = getClient();
+    if (!c) return null;
+    const data = await c.getList<NewsItem>({
       endpoint: "news",
       queries: {
         filters: `slug[equals]${slug}`,
@@ -113,7 +123,9 @@ export async function getAdjacentNews(slug: string) {
 
 export async function getTalentsList() {
   try {
-    const data = await client.getList<Talent>({
+    const c = getClient();
+    if (!c) return [];
+    const data = await c.getList<Talent>({
       endpoint: "talent",
       queries: {
         limit: 100,
@@ -127,7 +139,9 @@ export async function getTalentsList() {
 
 export async function getTalentBySlug(slug: string) {
   try {
-    const data = await client.getList<Talent>({
+    const c = getClient();
+    if (!c) return null;
+    const data = await c.getList<Talent>({
       endpoint: "talent",
       queries: {
         filters: `slug[equals]${slug}`,
@@ -144,7 +158,9 @@ export async function getTalentBySlug(slug: string) {
 
 export async function getPage(slug: string) {
   try {
-    const data = await client.getList<Page>({
+    const c = getClient();
+    if (!c) return null;
+    const data = await c.getList<Page>({
       endpoint: "pages",
       queries: {
         filters: `slug[equals]${slug}`,
