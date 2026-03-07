@@ -241,6 +241,7 @@ export default function TalentDetail({ talent, prev, next }: Props) {
               filter: loaded ? "drop-shadow(0 0 60px rgba(0,0,0,0.6))" : "drop-shadow(0 0 60px rgba(0,0,0,0.6)) brightness(0.5)",
             }}
           >
+            {talent.fullImg?.url && (
             <img
               src={talent.fullImg.url}
               alt={talent.name}
@@ -248,6 +249,7 @@ export default function TalentDetail({ talent, prev, next }: Props) {
                 maxHeight: "100%", objectFit: "contain", objectPosition: "bottom center",
               }}
             />
+            )}
           </div>
 
           {/* Floating particles */}
@@ -305,6 +307,7 @@ export default function TalentDetail({ talent, prev, next }: Props) {
           }}
         >
           <div style={{ animation: "float 3s ease-in-out infinite" }}>
+            {talent.sdImg?.url && (
             <img
               src={talent.sdImg.url}
               alt={`${talent.name} SD`}
@@ -313,6 +316,7 @@ export default function TalentDetail({ talent, prev, next }: Props) {
                 filter: "drop-shadow(0 8px 30px rgba(0,0,0,0.7))",
               }}
             />
+            )}
           </div>
         </div>
 

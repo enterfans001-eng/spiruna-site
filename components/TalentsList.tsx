@@ -201,6 +201,7 @@ export default function TalentsList({ talents }: Props) {
                 }}>
                   {t.talentId}
                 </div>
+                {t.fullImg?.url && (
                 <img
                   src={t.fullImg.url}
                   alt={t.name}
@@ -211,6 +212,7 @@ export default function TalentsList({ talents }: Props) {
                     objectFit: "contain", objectPosition: "bottom center",
                   }}
                 />
+                )}
               </div>
 
               {/* Info */}

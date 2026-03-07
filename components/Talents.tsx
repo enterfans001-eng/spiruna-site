@@ -103,6 +103,7 @@ export default function Talents({ talents }: Props) {
                 </div>
 
                 {/* Full character */}
+                {t.fullImg?.url && (
                 <div className="absolute inset-0 flex items-start justify-center overflow-hidden">
                   <img
                     src={t.fullImg.url}
@@ -117,8 +118,10 @@ export default function Talents({ talents }: Props) {
                     }}
                   />
                 </div>
+                )}
 
                 {/* SD character - appears on hover */}
+                {t.sdImg?.url && (
                 <div className="absolute z-20 pointer-events-none" style={{ bottom: "0.5rem", right: "0.75rem" }}>
                   <img
                     src={t.sdImg.url}
@@ -131,6 +134,7 @@ export default function Talents({ talents }: Props) {
                     }}
                   />
                 </div>
+                )}
 
                 {/* Tag badge on hover */}
                 <div className="tag-badge absolute z-20" style={{ top: "0.75rem", left: "0.75rem" }}>
