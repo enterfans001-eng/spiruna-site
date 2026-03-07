@@ -242,7 +242,7 @@ export default function TalentDetail({ talent, prev, next }: Props) {
             }}
           >
             <img
-              src={talent.fullImg}
+              src={talent.fullImg.url}
               alt={talent.name}
               style={{
                 maxHeight: "100%", objectFit: "contain", objectPosition: "bottom center",
@@ -306,7 +306,7 @@ export default function TalentDetail({ talent, prev, next }: Props) {
         >
           <div style={{ animation: "float 3s ease-in-out infinite" }}>
             <img
-              src={talent.sdImg}
+              src={talent.sdImg.url}
               alt={`${talent.name} SD`}
               style={{
                 height: 260, objectFit: "contain",

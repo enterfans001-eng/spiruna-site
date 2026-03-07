@@ -61,7 +61,7 @@ export default function NewsListContent({ newsItems }: Props) {
                     background: `linear-gradient(135deg, ${item.accent}22, ${item.accent}08)`,
                   }}>
                     <img
-                      src={item.image}
+                      src={item.image.url}
                       alt=""
                       style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     />

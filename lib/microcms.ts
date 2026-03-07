@@ -15,6 +15,13 @@ function getClient() {
 
 // ---------- Types ----------
 
+/** microCMS 画像フィールドの型 */
+export type MicroCMSImage = {
+  url: string;
+  width?: number;
+  height?: number;
+};
+
 export type NewsItem = {
   title: string;
   slug: string;
@@ -24,7 +31,7 @@ export type NewsItem = {
   accent: string;
   isNew: boolean;
   body: string;
-  image?: string;
+  image?: MicroCMSImage;
 } & MicroCMSListContent;
 
 export type Talent = {
@@ -36,8 +43,8 @@ export type Talent = {
   gradient: string;
   tag: string;
   bio: string;
-  fullImg: string;
-  sdImg: string;
+  fullImg: MicroCMSImage;
+  sdImg: MicroCMSImage;
   birthday?: string;
   debutDate?: string;
   generation?: string;

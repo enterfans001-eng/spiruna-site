@@ -202,7 +202,7 @@ export default function TalentsList({ talents }: Props) {
                   {t.talentId}
                 </div>
                 <img
-                  src={t.fullImg}
+                  src={t.fullImg.url}
                   alt={t.name}
                   className="tl-img"
                   style={{

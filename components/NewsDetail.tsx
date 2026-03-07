@@ -124,7 +124,7 @@ export default function NewsDetail({ item, prev, next }: Props) {
             overflow: "hidden",
             border: "1px solid var(--border)",
           }}>
-            <Image src={item.image} alt={item.title} fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, 48rem" priority />
+            <Image src={item.image.url} alt={item.title} fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, 48rem" priority />
           </div>
         )}
 

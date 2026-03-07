@@ -105,7 +105,7 @@ export default function Talents({ talents }: Props) {
                 {/* Full character */}
                 <div className="absolute inset-0 flex items-start justify-center overflow-hidden">
                   <img
-                    src={t.fullImg}
+                    src={t.fullImg.url}
                     alt={t.name}
                     className="char-full relative z-10"
                     style={{
@@ -121,7 +121,7 @@ export default function Talents({ talents }: Props) {
                 {/* SD character - appears on hover */}
                 <div className="absolute z-20 pointer-events-none" style={{ bottom: "0.5rem", right: "0.75rem" }}>
                   <img
-                    src={t.sdImg}
+                    src={t.sdImg.url}
                     alt={`${t.name} SD`}
                     className="char-sd"
                     style={{
