@@ -59,7 +59,7 @@ export default function TalentsList({ talents }: Props) {
         .tl-img { transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
         .tl-item { transition: transform 0.7s cubic-bezier(0.16,1,0.3,1), opacity 0.6s; }
         @media (max-width: 640px) {
-          .tl-grid { grid-template-columns: 1fr !important; }
+          .tl-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.75rem !important; }
         }
         @media (min-width: 641px) and (max-width: 1024px) {
           .tl-grid { grid-template-columns: repeat(2, 1fr) !important; }
