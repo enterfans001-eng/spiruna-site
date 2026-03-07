@@ -64,8 +64,8 @@ export const metadata: Metadata = {
 
   // ---------- ファビコン ----------
   icons: {
-    icon: "/icon.svg",
-    apple: "/apple-icon.svg",
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
   },
 
   // ---------- Google Search Console ----------
