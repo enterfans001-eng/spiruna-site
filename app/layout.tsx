@@ -24,13 +24,14 @@ const orbitron = Orbitron({
 
 const SITE_URL = "https://spiruna.jp";
 const SITE_NAME = "SPIRUNA";
+const SITE_TITLE = "Vクリエイター事務所Spiruna | TikTokV公認提携ライブ配信事務所";
 const SITE_DESC =
-  "次世代バーチャルクリエイターの発掘・育成・マネジメントを行うTikTok V事務所 SPIRUNA。株式会社エンターファンズが運営。";
+  "Vクリエイター事務所Spirunaは、次世代バーチャルクリエイターの発掘・育成・マネジメントを行うTikTok公認提携エージェンシー(1次代理店)のVクリエイター事務所です。株式会社エンターファンズが運営。";
 
 export const metadata: Metadata = {
   // ---------- 基本 ----------
   title: {
-    default: "SPIRUNA | TikTok V Virtual Agency",
+    default: SITE_TITLE,
     template: "%s | SPIRUNA",
   },
   description: SITE_DESC,
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
-    title: "SPIRUNA | TikTok V Virtual Agency",
+    title: SITE_TITLE,
     description: SITE_DESC,
     url: SITE_URL,
     locale: "ja_JP",
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
         url: "/hero-kv.jpg",
         width: 1200,
         height: 630,
-        alt: "SPIRUNA - TikTok V Virtual Agency",
+        alt: "Vクリエイター事務所Spiruna",
       },
     ],
   },
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
   // ---------- Twitter (X) ----------
   twitter: {
     card: "summary_large_image",
-    title: "SPIRUNA | TikTok V Virtual Agency",
+    title: SITE_TITLE,
     description: SITE_DESC,
     images: ["/hero-kv.jpg"],
   },
