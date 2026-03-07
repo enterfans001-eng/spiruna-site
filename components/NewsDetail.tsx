@@ -112,7 +112,7 @@ export default function NewsDetail({ item, prev, next }: Props) {
         </div>
 
         {/* Main image */}
-        {item.image && (
+        {item.image?.url && (
           <div className="nd-item" style={{
             opacity: loaded ? 1 : 0,
             transform: loaded ? "translateY(0)" : "translateY(20px)",

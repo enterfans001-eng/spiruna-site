@@ -55,7 +55,7 @@ export default function NewsListContent({ newsItems }: Props) {
                 }}
               >
                 {/* Image */}
-                {item.image && (
+                {item.image?.url && (
                   <div style={{
                     flexShrink: 0, width: 100, height: 70, overflow: "hidden",
                     background: `linear-gradient(135deg, ${item.accent}22, ${item.accent}08)`,

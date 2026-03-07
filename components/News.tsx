@@ -70,7 +70,7 @@ export default function News({ newsItems }: Props) {
               style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "1.5rem", padding: "1.25rem 1.5rem" }}
             >
               {/* Thumbnail */}
-              {item.image && (
+              {item.image?.url && (
                 <div className="news-thumb">
                   <Image src={item.image.url} alt={item.title} fill style={{ objectFit: "cover" }} sizes="(max-width: 640px) 100vw, 112px" />
                 </div>
