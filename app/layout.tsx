@@ -112,13 +112,13 @@ export default function RootLayout({
   return (
     <html lang="ja" className={`${playfair.variable} ${spaceGrotesk.variable} ${orbitron.variable}`}>
       <head>
+        <GoogleAnalytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body className="antialiased">
-        <GoogleAnalytics />
         <div className="scanline" />
         <CursorEffect />
         {children}
