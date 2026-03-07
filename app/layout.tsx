@@ -21,9 +21,83 @@ const orbitron = Orbitron({
   display: "swap",
 });
 
+const SITE_URL = "https://spiruna.jp";
+const SITE_NAME = "SPIRUNA";
+const SITE_DESC =
+  "次世代バーチャルクリエイターの発掘・育成・マネジメントを行うTikTok V事務所 SPIRUNA。株式会社エンターファンズが運営。";
+
 export const metadata: Metadata = {
-  title: "SPIRUNA | TikTok V Virtual Agency",
-  description: "次世代バーチャルクリエイターの発掘・育成・マネジメントを行うTikTok V事務所 SPIRUNA。",
+  // ---------- 基本 ----------
+  title: {
+    default: "SPIRUNA | TikTok V Virtual Agency",
+    template: "%s | SPIRUNA",
+  },
+  description: SITE_DESC,
+  metadataBase: new URL(SITE_URL),
+
+  // ---------- OGP ----------
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: "SPIRUNA | TikTok V Virtual Agency",
+    description: SITE_DESC,
+    url: SITE_URL,
+    locale: "ja_JP",
+    images: [
+      {
+        url: "/hero-kv.jpg",
+        width: 1200,
+        height: 630,
+        alt: "SPIRUNA - TikTok V Virtual Agency",
+      },
+    ],
+  },
+
+  // ---------- Twitter (X) ----------
+  twitter: {
+    card: "summary_large_image",
+    title: "SPIRUNA | TikTok V Virtual Agency",
+    description: SITE_DESC,
+    images: ["/hero-kv.jpg"],
+  },
+
+  // ---------- ファビコン ----------
+  icons: {
+    icon: "/icon.svg",
+    apple: "/apple-icon.svg",
+  },
+
+  // ---------- その他SEO ----------
+  alternates: {
+    canonical: SITE_URL,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
+// ---------- JSON-LD 構造化データ ----------
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo-spiruna.png`,
+  description: SITE_DESC,
+  foundingDate: "2025",
+  parentOrganization: {
+    "@type": "Organization",
+    name: "株式会社エンターファンズ",
+  },
+  sameAs: [],
 };
 
 export default function RootLayout({
@@ -31,6 +105,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ja" className={`${playfair.variable} ${spaceGrotesk.variable} ${orbitron.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="antialiased">
         <div className="scanline" />
         <CursorEffect />
