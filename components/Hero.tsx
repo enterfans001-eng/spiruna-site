@@ -281,7 +281,7 @@ export default function Hero() {
           fontFamily: "var(--font-cyber)",
         }}
       >
-        NEXT GEN · V-TALENT · SPIRUNA
+        NEXT GEN · V-CREATOR · SPIRUNA
       </div>
     </section>
   );
