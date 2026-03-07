@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Space_Grotesk, Orbitron } from "next/font/google";
 import CursorEffect from "@/components/CursorEffect";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -67,6 +68,11 @@ export const metadata: Metadata = {
     apple: "/apple-icon.svg",
   },
 
+  // ---------- Google Search Console ----------
+  verification: {
+    google: "mUZFtyJsT_QwUvG98hZN9sP13e3tiFbLM1G0z3zCYZk",
+  },
+
   // ---------- その他SEO ----------
   alternates: {
     canonical: SITE_URL,
@@ -112,6 +118,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
+        <GoogleAnalytics />
         <div className="scanline" />
         <CursorEffect />
         {children}
