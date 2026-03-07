@@ -94,7 +94,7 @@ export default function Hero() {
             fontFamily: "var(--font-cyber)",
           }}
         >
-          ◆ SPIRUNA // KEY VISUAL 2025
+          ◆ SPIRUNA // KEY VISUAL 2026
         </span>
       </div>
 
