@@ -5,13 +5,17 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
+    const port = Number(process.env.SMTP_PORT) || 465;
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT) || 587,
-      secure: false,
+      port,
+      secure: port === 465,
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
+      },
+      tls: {
+        rejectUnauthorized: false,
       },
     });
 
@@ -39,10 +43,11 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error("Contact form error:", error);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("Contact form error:", message);
     return NextResponse.json(
-      { success: false, error: "送信に失敗しました" },
+      { success: false, error: message },
       { status: 500 }
     );
   }
