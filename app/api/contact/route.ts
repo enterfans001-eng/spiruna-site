@@ -1,23 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-
-    const port = Number(process.env.SMTP_PORT) || 465;
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port,
-      secure: port === 465,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-      tls: {
-        rejectUnauthorized: false,
-      },
-    });
 
     // Build email body
     const fields = Object.entries(body)
@@ -35,9 +23,12 @@ export async function POST(req: NextRequest) {
       `━━━━━━━━━━━━━━━━━━━━━━━━\n` +
       `このメールはSPIRUNA公式サイトのお問い合わせフォームから自動送信されました。`;
 
-    await transporter.sendMail({
-      from: `"SPIRUNA お問い合わせ" <${process.env.SMTP_USER}>`,
-      to: process.env.SMTP_USER,
+    const fromAddress = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+    const toAddress = process.env.CONTACT_TO_EMAIL || "info@spiruna.jp";
+
+    await resend.emails.send({
+      from: `SPIRUNA お問い合わせ <${fromAddress}>`,
+      to: [toAddress],
       subject: `【SPIRUNA】お問い合わせ（${formType}）: ${body["お名前"] || "名前未入力"}`,
       text: mailBody,
     });
