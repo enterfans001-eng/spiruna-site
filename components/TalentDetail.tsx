@@ -10,7 +10,9 @@ type Props = {
 };
 
 export default function TalentDetail({ talent, prev, next }: Props) {
-  const ac = talent.accent;
+  const ac = talent.accent || "#ff0033";
+  const grad = talent.gradient || `linear-gradient(135deg, ${ac}18 0%, rgba(6,6,8,0.95) 100%)`;
+  const tags = talent.tag ? talent.tag.split("·").map((s) => s.trim()) : [];
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -195,7 +197,7 @@ export default function TalentDetail({ talent, prev, next }: Props) {
           style={{
             position: "absolute", top: 0, left: 0, bottom: 0,
             width: "65%",
-            background: talent.gradient,
+            background: grad,
             zIndex: 2,
           }}
         >
@@ -391,6 +393,7 @@ export default function TalentDetail({ talent, prev, next }: Props) {
           }} />
 
           {/* Bio */}
+          {talent.bio && (
           <div className="td-info-item" style={{
             opacity: loaded ? 1 : 0,
             transform: loaded ? "translateX(0)" : "translateX(30px)",
@@ -401,8 +404,10 @@ export default function TalentDetail({ talent, prev, next }: Props) {
               {talent.bio}
             </p>
           </div>
+          )}
 
           {/* Tags */}
+          {tags.length > 0 && (
           <div className="td-info-item" style={{
             display: "flex", gap: "0.5rem", flexWrap: "wrap",
             opacity: loaded ? 1 : 0,
@@ -410,15 +415,16 @@ export default function TalentDetail({ talent, prev, next }: Props) {
             transitionDelay: "0.8s",
             marginBottom: "1.5rem",
           }}>
-            {talent.tag.split("·").map((tag) => (
-              <span key={tag.trim()} style={{
+            {tags.map((tag) => (
+              <span key={tag} style={{
                 padding: "0.3rem 0.8rem", background: `${ac}10`, border: `1px solid ${ac}25`,
                 color: ac, fontSize: "0.65rem", letterSpacing: "0.12em",
               }}>
-                {tag.trim()}
+                {tag}
               </span>
             ))}
           </div>
+          )}
 
         </div>
 

@@ -20,5 +20,5 @@ export default async function TalentPage({ params }: { params: Promise<{ id: str
 
 export async function generateStaticParams() {
   const talents = await getTalentsList();
-  return talents.map((t) => ({ id: t.slug }));
+  return talents.filter((t) => t.slug).map((t) => ({ id: t.slug }));
 }

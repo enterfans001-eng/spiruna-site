@@ -62,7 +62,11 @@ export default function Talents({ talents }: Props) {
         </div>
 
         <div className="talents-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
-          {talents.map((t, i) => (
+          {talents.map((t, i) => {
+            const ac = t.accent || "#ff0033";
+            const grad = t.gradient || `linear-gradient(135deg, ${ac}18 0%, rgba(6,6,8,0.95) 100%)`;
+            const firstTag = t.tag ? t.tag.split("·")[0].trim() : "";
+            return (
             <Link
               key={t.talentId}
               href={`/talents/${t.slug}`}
@@ -70,26 +74,26 @@ export default function Talents({ talents }: Props) {
               style={{ textDecoration: "none", display: "block" }}
             >
               {/* Image panel */}
-              <div className="relative overflow-hidden" style={{ height: 340, background: t.gradient }}>
+              <div className="relative overflow-hidden" style={{ height: 340, background: grad }}>
                 {/* Grid pattern */}
                 <div className="absolute inset-0 pointer-events-none" style={{
-                  backgroundImage: `linear-gradient(${t.accent}06 1px,transparent 1px),linear-gradient(90deg,${t.accent}06 1px,transparent 1px)`,
+                  backgroundImage: `linear-gradient(${ac}06 1px,transparent 1px),linear-gradient(90deg,${ac}06 1px,transparent 1px)`,
                   backgroundSize: "32px 32px",
                 }} />
 
                 {/* Bottom glow */}
                 <div className="absolute inset-0 pointer-events-none" style={{
-                  background: `radial-gradient(ellipse 70% 50% at 50% 100%, ${t.accent}35 0%, transparent 100%)`,
+                  background: `radial-gradient(ellipse 70% 50% at 50% 100%, ${ac}35 0%, transparent 100%)`,
                 }} />
 
                 {/* Glow ring */}
                 <div className="glow-ring absolute inset-0 pointer-events-none" style={{
-                  background: `radial-gradient(circle at 50% 80%, ${t.accent}25 0%, transparent 50%)`,
+                  background: `radial-gradient(circle at 50% 80%, ${ac}25 0%, transparent 50%)`,
                 }} />
 
                 {/* Top ambient glow */}
                 <div className="absolute inset-0 pointer-events-none" style={{
-                  background: `radial-gradient(ellipse 60% 40% at 50% 0%, ${t.accent}12 0%, transparent 100%)`,
+                  background: `radial-gradient(ellipse 60% 40% at 50% 0%, ${ac}12 0%, transparent 100%)`,
                 }} />
 
                 {/* Background name text */}
@@ -97,7 +101,7 @@ export default function Talents({ talents }: Props) {
                   bottom: "1rem", left: "50%", transform: "translateX(-50%)",
                   whiteSpace: "nowrap", fontSize: "3rem", fontWeight: 900,
                   fontFamily: "var(--font-heading), serif", letterSpacing: "0.08em",
-                  color: `${t.accent}18`, userSelect: "none", lineHeight: 1,
+                  color: `${ac}18`, userSelect: "none", lineHeight: 1,
                 }}>
                   {t.nameEn}
                 </div>
@@ -137,28 +141,30 @@ export default function Talents({ talents }: Props) {
                 )}
 
                 {/* Tag badge on hover */}
+                {firstTag && (
                 <div className="tag-badge absolute z-20" style={{ top: "0.75rem", left: "0.75rem" }}>
                   <span style={{
-                    background: `${t.accent}20`, border: `1px solid ${t.accent}50`,
-                    color: t.accent, fontSize: "0.6rem", letterSpacing: "0.1em",
+                    background: `${ac}20`, border: `1px solid ${ac}50`,
+                    color: ac, fontSize: "0.6rem", letterSpacing: "0.1em",
                     padding: "0.25rem 0.6rem", display: "inline-block",
                   }}>
-                    {t.tag.split("·")[0].trim()}
+                    {firstTag}
                   </span>
                 </div>
+                )}
 
                 {/* ID badge */}
                 <div className="absolute z-20" style={{ top: "0.75rem", right: "0.75rem" }}>
                   <span style={{
                     fontSize: "0.6rem", letterSpacing: "0.15em", fontFamily: "monospace",
-                    color: `${t.accent}80`,
+                    color: `${ac}80`,
                   }}>
                     {t.talentId}
                   </span>
                 </div>
 
                 {/* Accent line bottom */}
-                <div className="accent-line absolute bottom-0 left-0 right-0 z-20" style={{ height: 3, background: t.accent }} />
+                <div className="accent-line absolute bottom-0 left-0 right-0 z-20" style={{ height: 3, background: ac }} />
               </div>
 
               {/* Name section */}
@@ -171,7 +177,8 @@ export default function Talents({ talents }: Props) {
                 </p>
               </div>
             </Link>
-          ))}
+            );
+          })}
         </div>
 
         <div className="text-center reveal delay-3" style={{ marginTop: "3rem" }}>

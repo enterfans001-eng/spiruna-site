@@ -39,12 +39,12 @@ export type Talent = {
   slug: string;
   name: string;
   nameEn: string;
-  accent: string;
-  gradient: string;
-  tag: string;
-  bio: string;
-  fullImg: MicroCMSImage;
-  sdImg: MicroCMSImage;
+  accent?: string;
+  gradient?: string;
+  tag?: string;
+  bio?: string;
+  fullImg?: MicroCMSImage;
+  sdImg?: MicroCMSImage;
   birthday?: string;
   debutDate?: string;
   generation?: string;

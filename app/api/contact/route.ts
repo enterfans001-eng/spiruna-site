@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResend() {
+  return new Resend(process.env.RESEND_API_KEY);
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -26,7 +28,7 @@ export async function POST(req: NextRequest) {
     const fromAddress = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
     const toAddress = process.env.CONTACT_TO_EMAIL || "info@spiruna.jp";
 
-    await resend.emails.send({
+    await getResend().emails.send({
       from: `SPIRUNA お問い合わせ <${fromAddress}>`,
       to: [toAddress],
       subject: `【SPIRUNA】お問い合わせ（${formType}）: ${body["お名前"] || "名前未入力"}`,

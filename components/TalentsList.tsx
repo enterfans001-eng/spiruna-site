@@ -25,7 +25,7 @@ export default function TalentsList({ talents }: Props) {
       result = talents.filter((t) =>
         t.name.toLowerCase().includes(q) ||
         t.nameEn.toLowerCase().includes(q) ||
-        t.tag.toLowerCase().includes(q) ||
+        (t.tag || "").toLowerCase().includes(q) ||
         t.talentId.toLowerCase().includes(q)
       );
     }
@@ -176,7 +176,11 @@ export default function TalentsList({ talents }: Props) {
         <div className="tl-grid" style={{
           display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem",
         }}>
-          {filtered.map((t, i) => (
+          {filtered.map((t, i) => {
+            const ac = t.accent || "#ff0033";
+            const grad = t.gradient || `linear-gradient(135deg, ${ac}18 0%, rgba(6,6,8,0.95) 100%)`;
+            const tags = t.tag ? t.tag.split(" · ") : [];
+            return (
             <Link
               key={t.slug}
               href={`/talents/${t.slug}`}
@@ -184,7 +188,7 @@ export default function TalentsList({ talents }: Props) {
               style={{
                 textDecoration: "none", color: "inherit",
                 borderRadius: "8px", overflow: "hidden",
-                background: t.gradient,
+                background: grad,
                 opacity: loaded ? 1 : 0,
                 transform: loaded ? "translateY(0)" : "translateY(30px)",
                 transitionDelay: `${0.1 + i * 0.08}s`,
@@ -197,7 +201,7 @@ export default function TalentsList({ talents }: Props) {
                 <div style={{
                   position: "absolute", top: "0.5rem", right: "0.75rem",
                   fontSize: "0.6rem", letterSpacing: "0.15em",
-                  color: t.accent, opacity: 0.7,
+                  color: ac, opacity: 0.7,
                 }}>
                   {t.talentId}
                 </div>
@@ -219,7 +223,7 @@ export default function TalentsList({ talents }: Props) {
               <div style={{
                 padding: "1.25rem", textAlign: "center",
                 background: "rgba(6,6,8,0.6)",
-                borderTop: `1px solid ${t.accent}22`,
+                borderTop: `1px solid ${ac}22`,
               }}>
                 <h3 className="tl-name" style={{
                   fontSize: "1.2rem", fontWeight: 700, marginBottom: "0.25rem",
@@ -228,24 +232,27 @@ export default function TalentsList({ talents }: Props) {
                 </h3>
                 <p style={{
                   fontSize: "0.65rem", letterSpacing: "0.15em",
-                  color: "var(--text-muted)", marginBottom: "0.75rem",
+                  color: "var(--text-muted)", marginBottom: tags.length > 0 ? "0.75rem" : 0,
                 }}>
                   {t.nameEn}
                 </p>
+                {tags.length > 0 && (
                 <div style={{ display: "flex", gap: "0.4rem", justifyContent: "center", flexWrap: "wrap" }}>
-                  {t.tag.split(" · ").map((tag) => (
+                  {tags.map((tag) => (
                     <span key={tag} style={{
                       fontSize: "0.6rem", padding: "0.2rem 0.6rem",
-                      border: `1px solid ${t.accent}40`, borderRadius: "2px",
-                      color: t.accent, letterSpacing: "0.05em",
+                      border: `1px solid ${ac}40`, borderRadius: "2px",
+                      color: ac, letterSpacing: "0.05em",
                     }}>
                       {tag}
                     </span>
                   ))}
                 </div>
+                )}
               </div>
             </Link>
-          ))}
+            );
+          })}
         </div>
 
         {/* No results */}
