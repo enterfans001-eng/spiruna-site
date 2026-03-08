@@ -1,16 +1,19 @@
 "use client";
 import { useState, useCallback } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 type FormType = "corporate" | "individual";
 
 export default function ContactContent() {
+  const router = useRouter();
   const [formType, setFormType] = useState<FormType>("corporate");
   const [postalCode, setPostalCode] = useState("");
   const [address, setAddress] = useState({ pref: "", city: "", town: "" });
   const [addressDetail, setAddressDetail] = useState("");
+  const [sending, setSending] = useState(false);
 
   const lookupPostalCode = useCallback(async (code: string) => {
     const cleaned = code.replace(/[^0-9]/g, "");
@@ -32,6 +35,35 @@ export default function ContactContent() {
     const cleaned = val.replace(/[^0-9]/g, "");
     if (cleaned.length === 7) {
       lookupPostalCode(cleaned);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSending(true);
+
+    const formData = new FormData(e.currentTarget);
+    const data: Record<string, string> = { _formType: formType };
+    formData.forEach((value, key) => {
+      data[key] = value.toString();
+    });
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        router.push("/contact/thanks");
+      } else {
+        alert("送信に失敗しました。時間をおいて再度お試しください。");
+      }
+    } catch {
+      alert("送信に失敗しました。時間をおいて再度お試しください。");
+    } finally {
+      setSending(false);
     }
   };
 
@@ -116,17 +148,9 @@ export default function ContactContent() {
 
           {/* Form */}
           <form
-            action="https://formsubmit.co/info@spiruna.jp"
-            method="POST"
+            onSubmit={handleSubmit}
             style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}
           >
-            {/* FormSubmit settings */}
-            <input type="hidden" name="_subject" value="【SPIRUNA】お問い合わせがありました" />
-            <input type="hidden" name="_next" value="https://spiruna.jp/contact/thanks" />
-            <input type="hidden" name="_captcha" value="true" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="お問い合わせ種別" value={formType === "corporate" ? "法人" : "個人"} />
-
             {/* Corporate fields */}
             {formType === "corporate" && (
               <>
@@ -280,29 +304,32 @@ export default function ContactContent() {
             <div style={{ textAlign: "center", marginTop: "1rem" }}>
               <button
                 type="submit"
+                disabled={sending}
                 style={{
                   display: "inline-flex", alignItems: "center", gap: "0.5rem",
                   padding: "0.9rem 3rem",
-                  background: "var(--red)", color: "#fff",
+                  background: sending ? "#666" : "var(--red)", color: "#fff",
                   fontSize: "0.8rem", letterSpacing: "0.2em", fontWeight: 700,
-                  border: "1px solid var(--red)",
-                  cursor: "pointer",
+                  border: sending ? "1px solid #666" : "1px solid var(--red)",
+                  cursor: sending ? "not-allowed" : "pointer",
                   transition: "background 0.2s, transform 0.2s, box-shadow 0.2s",
                 }}
                 onMouseEnter={(e) => {
+                  if (sending) return;
                   e.currentTarget.style.background = "transparent";
                   e.currentTarget.style.color = "var(--red)";
                   e.currentTarget.style.transform = "translateY(-2px)";
                   e.currentTarget.style.boxShadow = "0 0 30px rgba(255,0,51,0.3)";
                 }}
                 onMouseLeave={(e) => {
+                  if (sending) return;
                   e.currentTarget.style.background = "var(--red)";
                   e.currentTarget.style.color = "#fff";
                   e.currentTarget.style.transform = "translateY(0)";
                   e.currentTarget.style.boxShadow = "none";
                 }}
               >
-                送信する
+                {sending ? "送信中..." : "送信する"}
               </button>
             </div>
           </form>
