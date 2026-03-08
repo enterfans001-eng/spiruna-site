@@ -15,7 +15,7 @@ export default async function TalentPage({ params }: { params: Promise<{ id: str
   const prev = allTalents[(idx - 1 + len) % len];
   const next = allTalents[(idx + 1) % len];
 
-  return <TalentDetail talent={talent} prev={prev} next={next} />;
+  return <TalentDetail talent={talent} prev={prev} next={next} index={idx} />;
 }
 
 export async function generateStaticParams() {

@@ -63,7 +63,8 @@ export default function Talents({ talents }: Props) {
 
         <div className="talents-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
           {talents.map((t, i) => {
-            const ac = t.accent || "#ff0033";
+            const defaultColors = ["#ff0033", "#3366ff"];
+            const ac = t.accent || defaultColors[i % 2];
             const grad = t.gradient || `linear-gradient(135deg, ${ac}18 0%, rgba(6,6,8,0.95) 100%)`;
             const firstTag = t.tag ? t.tag.split("·")[0].trim() : "";
             return (
