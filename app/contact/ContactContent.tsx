@@ -100,6 +100,7 @@ export default function ContactContent() {
                 key={type}
                 className="type-btn"
                 onClick={() => setFormType(type)}
+                type="button"
                 style={{
                   padding: "0.7rem 2.5rem",
                   fontSize: "0.8rem", letterSpacing: "0.15em", fontWeight: 600,
@@ -114,14 +115,24 @@ export default function ContactContent() {
           </div>
 
           {/* Form */}
-          <form onSubmit={(e) => e.preventDefault()} style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
+          <form
+            action="https://formsubmit.co/info@spiruna.jp"
+            method="POST"
+            style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}
+          >
+            {/* FormSubmit settings */}
+            <input type="hidden" name="_subject" value="【SPIRUNA】お問い合わせがありました" />
+            <input type="hidden" name="_next" value="https://spiruna.jp/contact/thanks" />
+            <input type="hidden" name="_captcha" value="true" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="お問い合わせ種別" value={formType === "corporate" ? "法人" : "個人"} />
 
             {/* Corporate fields */}
             {formType === "corporate" && (
               <>
                 <div>
                   <label style={labelStyle}>会社名{requiredMark}</label>
-                  <input className="contact-input" type="text" placeholder="株式会社○○" required style={inputStyle} />
+                  <input name="会社名" className="contact-input" type="text" placeholder="株式会社○○" required style={inputStyle} />
                 </div>
 
                 <div>
@@ -129,6 +140,7 @@ export default function ContactContent() {
                   <div style={{ display: "flex", gap: "0.75rem", marginBottom: "0.75rem", alignItems: "center" }}>
                     <span style={{ fontSize: "0.75rem", color: "var(--text-muted)", flexShrink: 0 }}>〒</span>
                     <input
+                      name="郵便番号"
                       className="contact-input"
                       type="text"
                       placeholder="1234567"
@@ -142,41 +154,41 @@ export default function ContactContent() {
                     </span>
                   </div>
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem", marginBottom: "0.75rem" }}>
-                    <input className="contact-input" type="text" placeholder="都道府県" value={address.pref} onChange={(e) => setAddress({ ...address, pref: e.target.value })} style={inputStyle} />
-                    <input className="contact-input" type="text" placeholder="市区町村" value={address.city} onChange={(e) => setAddress({ ...address, city: e.target.value })} style={inputStyle} />
+                    <input name="都道府県" className="contact-input" type="text" placeholder="都道府県" value={address.pref} onChange={(e) => setAddress({ ...address, pref: e.target.value })} style={inputStyle} />
+                    <input name="市区町村" className="contact-input" type="text" placeholder="市区町村" value={address.city} onChange={(e) => setAddress({ ...address, city: e.target.value })} style={inputStyle} />
                   </div>
-                  <input className="contact-input" type="text" placeholder="番地・建物名" value={addressDetail} onChange={(e) => setAddressDetail(e.target.value)} style={inputStyle} />
+                  <input name="番地・建物名" className="contact-input" type="text" placeholder="番地・建物名" value={addressDetail} onChange={(e) => setAddressDetail(e.target.value)} style={inputStyle} />
                 </div>
 
                 <div>
                   <label style={labelStyle}>URL</label>
-                  <input className="contact-input" type="url" placeholder="https://example.com" style={inputStyle} />
+                  <input name="URL" className="contact-input" type="url" placeholder="https://example.com" style={inputStyle} />
                 </div>
 
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
                   <div>
                     <label style={labelStyle}>お名前{requiredMark}</label>
-                    <input className="contact-input" type="text" placeholder="山田 太郎" required style={inputStyle} />
+                    <input name="お名前" className="contact-input" type="text" placeholder="山田 太郎" required style={inputStyle} />
                   </div>
                   <div>
                     <label style={labelStyle}>フリガナ{requiredMark}</label>
-                    <input className="contact-input" type="text" placeholder="ヤマダ タロウ" required style={inputStyle} />
+                    <input name="フリガナ" className="contact-input" type="text" placeholder="ヤマダ タロウ" required style={inputStyle} />
                   </div>
                 </div>
 
                 <div>
                   <label style={labelStyle}>部署</label>
-                  <input className="contact-input" type="text" placeholder="マーケティング部" style={inputStyle} />
+                  <input name="部署" className="contact-input" type="text" placeholder="マーケティング部" style={inputStyle} />
                 </div>
 
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
                   <div>
                     <label style={labelStyle}>メールアドレス{requiredMark}</label>
-                    <input className="contact-input" type="email" placeholder="info@example.com" required style={inputStyle} />
+                    <input name="メールアドレス" className="contact-input" type="email" placeholder="info@example.com" required style={inputStyle} />
                   </div>
                   <div>
                     <label style={labelStyle}>電話番号{requiredMark}</label>
-                    <input className="contact-input" type="tel" placeholder="03-1234-5678" required style={inputStyle} />
+                    <input name="電話番号" className="contact-input" type="tel" placeholder="03-1234-5678" required style={inputStyle} />
                   </div>
                 </div>
 
@@ -190,7 +202,7 @@ export default function ContactContent() {
                         background: "var(--surface)", border: "1px solid var(--border)",
                         color: "var(--text-muted)",
                       }}>
-                        <input type="radio" name="category" value={cat} required style={{ accentColor: "var(--red)" }} />
+                        <input type="radio" name="項目" value={cat} required style={{ accentColor: "var(--red)" }} />
                         {cat}
                       </label>
                     ))}
@@ -205,27 +217,27 @@ export default function ContactContent() {
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
                   <div>
                     <label style={labelStyle}>お名前{requiredMark}</label>
-                    <input className="contact-input" type="text" placeholder="山田 太郎" required style={inputStyle} />
+                    <input name="お名前" className="contact-input" type="text" placeholder="山田 太郎" required style={inputStyle} />
                   </div>
                   <div>
                     <label style={labelStyle}>フリガナ{requiredMark}</label>
-                    <input className="contact-input" type="text" placeholder="ヤマダ タロウ" required style={inputStyle} />
+                    <input name="フリガナ" className="contact-input" type="text" placeholder="ヤマダ タロウ" required style={inputStyle} />
                   </div>
                 </div>
 
                 <div>
                   <label style={labelStyle}>SNSのURL</label>
-                  <input className="contact-input" type="url" placeholder="https://twitter.com/yourname" style={inputStyle} />
+                  <input name="SNSのURL" className="contact-input" type="url" placeholder="https://twitter.com/yourname" style={inputStyle} />
                 </div>
 
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
                   <div>
                     <label style={labelStyle}>メールアドレス{requiredMark}</label>
-                    <input className="contact-input" type="email" placeholder="your@email.com" required style={inputStyle} />
+                    <input name="メールアドレス" className="contact-input" type="email" placeholder="your@email.com" required style={inputStyle} />
                   </div>
                   <div>
                     <label style={labelStyle}>電話番号</label>
-                    <input className="contact-input" type="tel" placeholder="090-1234-5678" style={inputStyle} />
+                    <input name="電話番号" className="contact-input" type="tel" placeholder="090-1234-5678" style={inputStyle} />
                   </div>
                 </div>
 
@@ -239,7 +251,7 @@ export default function ContactContent() {
                         background: "var(--surface)", border: "1px solid var(--border)",
                         color: "var(--text-muted)",
                       }}>
-                        <input type="radio" name="category" value={cat} required style={{ accentColor: "var(--red)" }} />
+                        <input type="radio" name="項目" value={cat} required style={{ accentColor: "var(--red)" }} />
                         {cat}
                       </label>
                     ))}
@@ -252,6 +264,7 @@ export default function ContactContent() {
             <div>
               <label style={labelStyle}>お問い合わせ内容{requiredMark}</label>
               <textarea
+                name="お問い合わせ内容"
                 className="contact-textarea"
                 placeholder="お問い合わせ内容をご記入ください"
                 required
