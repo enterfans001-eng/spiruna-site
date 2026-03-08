@@ -26,7 +26,7 @@ export default function TalentsList({ talents }: Props) {
         t.name.toLowerCase().includes(q) ||
         t.nameEn.toLowerCase().includes(q) ||
         (t.tag || "").toLowerCase().includes(q) ||
-        t.talentId.toLowerCase().includes(q)
+        (t.talentId || "").toLowerCase().includes(q)
       );
     }
     if (sort === "name") {

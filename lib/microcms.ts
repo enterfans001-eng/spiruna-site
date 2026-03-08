@@ -35,8 +35,8 @@ export type NewsItem = {
 } & MicroCMSListContent;
 
 export type Talent = {
-  talentId: string;
-  slug: string;
+  talentId?: string;
+  slug?: string;
   name: string;
   nameEn: string;
   accent?: string;
@@ -128,6 +128,15 @@ export async function getAdjacentNews(slug: string) {
 
 // ---------- Talents ----------
 
+/** slug/talentId が未設定のタレントにフォールバック値を付与 */
+function normalizeTalent(t: Talent): Talent {
+  return {
+    ...t,
+    slug: t.slug || t.id,
+    talentId: t.talentId || t.id,
+  };
+}
+
 export async function getTalentsList() {
   try {
     const c = getClient();
@@ -138,7 +147,7 @@ export async function getTalentsList() {
         limit: 100,
       },
     });
-    return data.contents;
+    return data.contents.map(normalizeTalent);
   } catch {
     return [];
   }
@@ -148,6 +157,8 @@ export async function getTalentBySlug(slug: string) {
   try {
     const c = getClient();
     if (!c) return null;
+
+    // まず slug フィールドで検索
     const data = await c.getList<Talent>({
       endpoint: "talent",
       queries: {
@@ -155,7 +166,15 @@ export async function getTalentBySlug(slug: string) {
         limit: 1,
       },
     });
-    return data.contents[0] ?? null;
+    if (data.contents[0]) return normalizeTalent(data.contents[0]);
+
+    // slug 未設定の場合、microCMS の id で直接取得
+    try {
+      const item = await c.get<Talent>({ endpoint: "talent", contentId: slug });
+      return normalizeTalent(item);
+    } catch {
+      return null;
+    }
   } catch {
     return null;
   }
