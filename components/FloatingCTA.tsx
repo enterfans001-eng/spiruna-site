@@ -25,8 +25,8 @@ export default function FloatingCTA() {
         bottom: "1.5rem",
         right: "1.5rem",
         zIndex: 9999,
-        width: 100,
-        height: 100,
+        width: 150,
+        height: 150,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -49,9 +49,9 @@ export default function FloatingCTA() {
         }
         .floating-cta-wrap:hover .floating-cta-label { color: #fff !important; }
         @media (max-width: 640px) {
-          .floating-cta-outer { width: 70px !important; height: 70px !important; bottom: 5rem !important; right: 0.75rem !important; }
-          .floating-cta-inner-circle { width: 48px !important; height: 48px !important; }
-          .floating-cta-label { font-size: 0.45rem !important; }
+          .floating-cta-outer { width: 105px !important; height: 105px !important; bottom: 5rem !important; right: 0.75rem !important; }
+          .floating-cta-inner-circle { width: 72px !important; height: 72px !important; }
+          .floating-cta-label { font-size: 0.55rem !important; }
         }
       `}</style>
 
@@ -88,8 +88,8 @@ export default function FloatingCTA() {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: 68,
-            height: 68,
+            width: 102,
+            height: 102,
             borderRadius: "50%",
             background: "rgba(255,0,51,0.08)",
             border: "1px solid rgba(255,0,51,0.35)",
@@ -105,7 +105,7 @@ export default function FloatingCTA() {
           <span
             className="floating-cta-label"
             style={{
-              fontSize: "0.6rem",
+              fontSize: "0.75rem",
               fontWeight: 700,
               color: "var(--red)",
               lineHeight: 1.4,
