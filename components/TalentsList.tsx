@@ -230,7 +230,7 @@ export default function TalentsList({ talents }: Props) {
                   className="tl-img"
                   style={{
                     position: "absolute", bottom: 0, left: "50%",
-                    transform: "translateX(-50%)", height: "105%",
+                    transform: "translateX(-50%)", height: "90%",
                     objectFit: "contain", objectPosition: "bottom center",
                   }}
                 />
