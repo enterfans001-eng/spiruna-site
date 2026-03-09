@@ -112,11 +112,16 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
         .td-char-main {
           transition: transform 1.2s cubic-bezier(0.16,1,0.3,1), opacity 0.8s, filter 0.8s;
         }
-        /* Carousel crossfade */
+        /* Carousel crossfade — grid stacking keeps container size */
+        .td-carousel-wrap {
+          display: grid;
+          height: 100%;
+          width: auto;
+        }
         .td-carousel-img {
+          grid-area: 1 / 1;
           transition: opacity 1s ease-in-out;
-          position: absolute;
-          top: 0; left: 0; width: 100%; height: 100%;
+          align-self: end;
         }
 
         /* SD character */
@@ -307,7 +312,7 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
             }}
           >
             {images.length > 0 && (
-              <div style={{ position: "relative", height: "100%", width: "100%" }}>
+              <div className="td-carousel-wrap">
                 {images.map((img, i) => (
                   <img
                     key={img.url}
@@ -317,7 +322,6 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
                     style={{
                       maxHeight: "100%", objectFit: "contain", objectPosition: "bottom center",
                       opacity: i === activeIndex ? 1 : 0,
-                      zIndex: i === activeIndex ? 1 : 0,
                     }}
                   />
                 ))}
