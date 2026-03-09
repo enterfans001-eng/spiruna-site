@@ -116,16 +116,15 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
         .td-carousel-wrap {
           display: grid;
           height: 100%;
-          width: auto;
-          justify-items: center;
+          width: 100%;
         }
         .td-carousel-img {
           grid-area: 1 / 1;
           transition: opacity 1s ease-in-out;
           align-self: end;
           justify-self: center;
+          width: 100%;
           height: 100%;
-          width: auto;
           object-fit: contain;
           object-position: bottom center;
         }
@@ -173,6 +172,7 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
             left: 50% !important;
             transform: translateX(-50%) scale(1) !important;
             height: 90% !important;
+            width: 80% !important;
             bottom: 1rem !important;
           }
           .td-char-sd-wrap {
@@ -312,7 +312,7 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
                 ? "translateX(-50%)"
                 : "translateX(-50%) translateY(40px)",
               opacity: loaded ? 1 : 0,
-              height: "88%", top: "auto", zIndex: 5,
+              height: "88%", width: "40%", top: "auto", zIndex: 5,
               display: "flex", alignItems: "flex-end",
               filter: loaded ? "drop-shadow(0 0 60px rgba(0,0,0,0.6))" : "drop-shadow(0 0 60px rgba(0,0,0,0.6)) brightness(0.5)",
             }}
