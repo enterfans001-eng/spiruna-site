@@ -117,11 +117,17 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           display: grid;
           height: 100%;
           width: auto;
+          justify-items: center;
         }
         .td-carousel-img {
           grid-area: 1 / 1;
           transition: opacity 1s ease-in-out;
           align-self: end;
+          justify-self: center;
+          height: 100%;
+          width: auto;
+          object-fit: contain;
+          object-position: bottom center;
         }
 
         /* SD character */
@@ -320,7 +326,6 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
                     alt={`${talent.name} ${i + 1}`}
                     className="td-carousel-img"
                     style={{
-                      maxHeight: "100%", objectFit: "contain", objectPosition: "bottom center",
                       opacity: i === activeIndex ? 1 : 0,
                     }}
                   />
