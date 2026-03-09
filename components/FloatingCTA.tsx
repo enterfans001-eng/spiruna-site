@@ -15,7 +15,9 @@ export default function FloatingCTA() {
 
   return (
     <a
-      href="#audition"
+      href="https://lin.ee/AzRlJ3Vr"
+      target="_blank"
+      rel="noopener noreferrer"
       aria-label="V CREATOR 募集中"
       className="floating-cta-outer"
       style={{
@@ -96,6 +98,7 @@ export default function FloatingCTA() {
             justifyContent: "center",
             flexDirection: "column",
             backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
             transition: "background 0.3s, border-color 0.3s, transform 0.3s",
           }}
         >

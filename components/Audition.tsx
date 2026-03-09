@@ -96,6 +96,7 @@ export default function Audition() {
             border: "1px solid rgba(255,255,255,0.5)",
             background: "rgba(255,0,51,0.15)",
             backdropFilter: "blur(4px)",
+            WebkitBackdropFilter: "blur(4px)",
             textShadow: "0 2px 12px rgba(0,0,0,0.5)",
           }}>
             オーディション開催中
@@ -110,7 +111,7 @@ export default function Audition() {
             SPIRUNAは常に新しいクリエイターを求めています。
           </p>
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-            <a href="#contact" className="aud-cta-btn" style={{
+            <a href="https://lin.ee/AzRlJ3Vr" target="_blank" rel="noopener noreferrer" className="aud-cta-btn" style={{
               display: "inline-flex", alignItems: "center", gap: "0.5rem",
               padding: "0.9rem 2.5rem",
               background: "var(--red)", color: "#fff",

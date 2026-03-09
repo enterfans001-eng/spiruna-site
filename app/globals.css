@@ -23,8 +23,11 @@ body {
   background-color: var(--bg);
   color: var(--text);
   font-family: "Space Grotesk", sans-serif;
-  overflow-x: hidden;
   line-height: 1.6;
+}
+
+html {
+  overflow-x: clip;
 }
 
 ::-webkit-scrollbar { width: 3px; }
@@ -204,6 +207,7 @@ body::after {
   padding: 14px 32px;
   font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
   border: 1px solid var(--red);
+  -webkit-clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
   clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
   transition: background 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s;
   cursor: pointer;
@@ -219,6 +223,7 @@ body::after {
   padding: 13px 31px;
   font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
   border: 1px solid rgba(240,240,240,0.15);
+  -webkit-clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
   clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
   transition: border-color 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s;
   cursor: pointer;

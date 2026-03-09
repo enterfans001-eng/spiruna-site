@@ -136,7 +136,7 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
         display: "flex", alignItems: "center", justifyContent: "space-between",
         padding: "1rem 2rem",
-        background: "rgba(6,6,8,0.85)", backdropFilter: "blur(16px)",
+        background: "rgba(6,6,8,0.85)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)",
         borderBottom: "1px solid rgba(255,0,51,0.12)",
       }}>
         <Link href="/talents" className="td-back-link" style={{

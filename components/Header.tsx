@@ -39,6 +39,7 @@ export default function Header() {
         style={{
           background: scrolled ? "rgba(6,6,8,0.92)" : "transparent",
           backdropFilter: scrolled ? "blur(16px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
           borderColor: scrolled ? "rgba(255,0,51,0.15)" : "transparent",
         }}
       >
@@ -94,7 +95,7 @@ export default function Header() {
 
         {/* Mobile menu */}
         <div
-          className="md:hidden overflow-hidden transition-all duration-400"
+          className="md:hidden overflow-hidden transition-all duration-300"
           style={{
             maxHeight: menuOpen ? "360px" : "0",
             borderTop: menuOpen ? "1px solid rgba(255,0,51,0.15)" : "none",
