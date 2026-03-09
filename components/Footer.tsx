@@ -20,8 +20,7 @@ export default function Footer() {
       label: "Follow",
       links: [
         { href: "https://tiktok.com", label: "TikTok" },
-        { href: "https://youtube.com", label: "YouTube" },
-        { href: "https://twitter.com", label: "X / Twitter" },
+        { href: "https://x.com/Spiruna_info", label: "X / Twitter" },
       ],
     },
   ];
