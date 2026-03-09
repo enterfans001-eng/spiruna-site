@@ -168,6 +168,17 @@ export default function TalentsList({ talents }: Props) {
           </div>
         </div>
 
+        {/* Follower sort note */}
+        {sort === "followers" && (
+          <p style={{
+            fontSize: "0.65rem", color: "var(--text-muted)",
+            marginBottom: "1rem", marginTop: "-0.5rem",
+            textAlign: "right",
+          }}>
+            ※フォロワー数は毎月月初に更新されます
+          </p>
+        )}
+
         {/* Result count */}
         {search && (
           <p style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginBottom: "1rem" }}>

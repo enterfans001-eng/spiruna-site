@@ -166,16 +166,16 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           .td-char-main {
             left: 50% !important;
             transform: translateX(-50%) scale(1) !important;
-            height: 80% !important;
-            bottom: 3rem !important;
+            height: 90% !important;
+            bottom: 1rem !important;
           }
           .td-char-sd-wrap {
             left: auto !important;
-            right: 0.5rem !important;
-            bottom: 36rem !important;
+            right: 1rem !important;
+            bottom: 8rem !important;
           }
           .td-char-sd-wrap img {
-            height: 130px !important;
+            height: 100px !important;
           }
           .td-diagonal-edge {
             display: none !important;
@@ -301,12 +301,12 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           <div
             className="td-char-main"
             style={{
-              position: "absolute", bottom: "1.5rem", left: "30%",
+              position: "absolute", bottom: "1rem", left: "30%",
               transform: loaded
                 ? "translateX(-50%)"
                 : "translateX(-50%) translateY(40px)",
               opacity: loaded ? 1 : 0,
-              height: "92%", top: "auto", zIndex: 5,
+              height: "88%", top: "auto", zIndex: 5,
               display: "flex", alignItems: "flex-end",
               filter: loaded ? "drop-shadow(0 0 60px rgba(0,0,0,0.6))" : "drop-shadow(0 0 60px rgba(0,0,0,0.6)) brightness(0.5)",
             }}
