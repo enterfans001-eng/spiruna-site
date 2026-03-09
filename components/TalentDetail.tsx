@@ -179,10 +179,10 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           .td-char-sd-wrap {
             left: auto !important;
             right: 1rem !important;
-            bottom: 6rem !important;
+            bottom: 18rem !important;
           }
           .td-char-sd-wrap img {
-            height: 90px !important;
+            height: 135px !important;
           }
           .td-diagonal-edge {
             display: none !important;
