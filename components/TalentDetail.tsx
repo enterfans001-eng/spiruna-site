@@ -148,7 +148,7 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           .td-diagonal-bg {
             clip-path: polygon(0 0, 100% 0, 100% 80%, 0 95%) !important;
             width: 100% !important;
-            height: 65vh !important;
+            height: 70vh !important;
             position: relative !important;
           }
           .td-diagonal-bg.initial {
@@ -171,17 +171,19 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           .td-char-main {
             left: 50% !important;
             transform: translateX(-50%) scale(1) !important;
-            height: 90% !important;
-            width: 80% !important;
-            bottom: 1rem !important;
+            height: 75% !important;
+            width: 70% !important;
+            bottom: 0 !important;
+            top: auto !important;
+            padding-top: 3.5rem !important;
           }
           .td-char-sd-wrap {
             left: auto !important;
             right: 1rem !important;
-            bottom: 8rem !important;
+            bottom: 6rem !important;
           }
           .td-char-sd-wrap img {
-            height: 100px !important;
+            height: 90px !important;
           }
           .td-diagonal-edge {
             display: none !important;
@@ -191,7 +193,7 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           }
           .td-carousel-dots {
             left: 50% !important;
-            bottom: 4rem !important;
+            bottom: 2rem !important;
           }
           .td-header-nav {
             gap: 0.25rem !important;
