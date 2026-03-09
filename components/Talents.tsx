@@ -70,7 +70,7 @@ export default function Talents({ talents }: Props) {
             return (
             <Link
               key={t.talentId}
-              href={`/talents/${t.slug}`}
+              href={`/CREATORS/${t.slug}`}
               className={`talent-card card-cyber group cursor-pointer reveal delay-${(i % 3) + 1} overflow-hidden`}
               style={{ textDecoration: "none", display: "block" }}
             >
@@ -183,7 +183,7 @@ export default function Talents({ talents }: Props) {
         </div>
 
         <div className="text-center reveal delay-3" style={{ marginTop: "3rem" }}>
-          <a href="/talents" className="btn-ghost" style={{ fontSize: "0.75rem" }}>MORE CREATORS →</a>
+          <a href="/CREATORS" className="btn-ghost" style={{ fontSize: "0.75rem" }}>MORE CREATORS →</a>
         </div>
       </div>
     </section>

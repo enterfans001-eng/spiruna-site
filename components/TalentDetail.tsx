@@ -205,7 +205,7 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
         background: "rgba(6,6,8,0.85)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)",
         borderBottom: "1px solid rgba(255,0,51,0.12)",
       }}>
-        <Link href="/talents" className="td-back-link" style={{
+        <Link href="/CREATORS" className="td-back-link" style={{
           display: "flex", alignItems: "center", gap: "0.75rem",
           textDecoration: "none", color: "var(--text-muted)",
           fontSize: "0.75rem", letterSpacing: "0.15em",
@@ -213,11 +213,11 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           <span style={{ fontSize: "1rem" }}>←</span> CREATOR
         </Link>
         <div className="td-header-nav" style={{ display: "flex", gap: "0.5rem" }}>
-          <Link href={`/talents/${prev.slug}`} className="td-nav-btn" style={{
+          <Link href={`/CREATORS/${prev.slug}`} className="td-nav-btn" style={{
             padding: "0.4rem 1rem", fontSize: "0.7rem", letterSpacing: "0.15em",
             border: "1px solid rgba(255,255,255,0.15)", color: "var(--text-muted)", textDecoration: "none",
           }}>← PREV</Link>
-          <Link href={`/talents/${next.slug}`} className="td-nav-btn" style={{
+          <Link href={`/CREATORS/${next.slug}`} className="td-nav-btn" style={{
             padding: "0.4rem 1rem", fontSize: "0.7rem", letterSpacing: "0.15em",
             border: `1px solid ${ac}`, color: ac, textDecoration: "none",
           }}>NEXT →</Link>
@@ -683,7 +683,7 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
 
         {/* ── Back to talents list ── */}
         <div style={{ textAlign: "center", paddingTop: "2rem", borderTop: `1px solid ${ac}15` }}>
-          <Link href="/talents" style={{
+          <Link href="/CREATORS" style={{
             display: "inline-block", padding: "0.75rem 2rem",
             border: `1px solid ${ac}30`, color: ac,
             fontSize: "0.75rem", letterSpacing: "0.15em",

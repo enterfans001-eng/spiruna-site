@@ -198,7 +198,7 @@ export default function TalentsList({ talents }: Props) {
             return (
             <Link
               key={t.slug}
-              href={`/talents/${t.slug}`}
+              href={`/CREATORS/${t.slug}`}
               className="tl-card tl-item"
               style={{
                 textDecoration: "none", color: "inherit",
