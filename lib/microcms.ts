@@ -44,6 +44,7 @@ export type Talent = {
   tag?: string;
   bio?: string;
   fullImg?: MicroCMSImage;
+  fullImgs?: MicroCMSImage[];
   sdImg?: MicroCMSImage;
   birthday?: string;
   debutDate?: string;

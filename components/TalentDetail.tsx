@@ -34,11 +34,44 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
   const grad = talent.gradient || `linear-gradient(135deg, ${ac}18 0%, rgba(6,6,8,0.95) 100%)`;
   const tags = talent.tag ? talent.tag.split("·").map((s) => s.trim()) : [];
   const [loaded, setLoaded] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [resetKey, setResetKey] = useState(0);
+
+  // Build resolved image list (fullImgs優先、fallback to fullImg)
+  const images = (() => {
+    if (talent.fullImgs && talent.fullImgs.length > 0) return talent.fullImgs;
+    if (talent.fullImg) return [talent.fullImg];
+    return [];
+  })();
+  const hasMultipleImages = images.length > 1;
 
   useEffect(() => {
     const t = setTimeout(() => setLoaded(true), 100);
     return () => clearTimeout(t);
   }, []);
+
+  // Auto-cycle every 5 seconds
+  useEffect(() => {
+    if (!hasMultipleImages) return;
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [hasMultipleImages, images.length, resetKey]);
+
+  // Preload all carousel images
+  useEffect(() => {
+    if (images.length <= 1) return;
+    images.forEach((img) => {
+      const preload = new Image();
+      preload.src = img.url;
+    });
+  }, [images]);
+
+  const goToImage = (i: number) => {
+    setActiveIndex(i);
+    setResetKey((k) => k + 1);
+  };
 
   return (
     <div style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--text)", position: "relative", overflow: "hidden" }}>
@@ -78,6 +111,12 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
         /* Character image entrance */
         .td-char-main {
           transition: transform 1.2s cubic-bezier(0.16,1,0.3,1), opacity 0.8s, filter 0.8s;
+        }
+        /* Carousel crossfade */
+        .td-carousel-img {
+          transition: opacity 1s ease-in-out;
+          position: absolute;
+          top: 0; left: 0; width: 100%; height: 100%;
         }
 
         /* SD character */
@@ -138,6 +177,10 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           }
           .td-bg-name-vertical {
             display: none !important;
+          }
+          .td-carousel-dots {
+            left: 50% !important;
+            bottom: 4rem !important;
           }
           .td-header-nav {
             gap: 0.25rem !important;
@@ -263,16 +306,58 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
               filter: loaded ? "drop-shadow(0 0 60px rgba(0,0,0,0.6))" : "drop-shadow(0 0 60px rgba(0,0,0,0.6)) brightness(0.5)",
             }}
           >
-            {talent.fullImg?.url && (
-            <img
-              src={talent.fullImg.url}
-              alt={talent.name}
-              style={{
-                maxHeight: "100%", objectFit: "contain", objectPosition: "bottom center",
-              }}
-            />
+            {images.length > 0 && (
+              <div style={{ position: "relative", height: "100%", width: "100%" }}>
+                {images.map((img, i) => (
+                  <img
+                    key={img.url}
+                    src={img.url}
+                    alt={`${talent.name} ${i + 1}`}
+                    className="td-carousel-img"
+                    style={{
+                      maxHeight: "100%", objectFit: "contain", objectPosition: "bottom center",
+                      opacity: i === activeIndex ? 1 : 0,
+                      zIndex: i === activeIndex ? 1 : 0,
+                    }}
+                  />
+                ))}
+              </div>
             )}
           </div>
+
+          {/* Carousel dot indicators */}
+          {hasMultipleImages && (
+            <div
+              className="td-carousel-dots"
+              style={{
+                position: "absolute",
+                bottom: "0.75rem",
+                left: "30%",
+                transform: "translateX(-50%)",
+                display: "flex",
+                gap: "0.5rem",
+                zIndex: 10,
+              }}
+            >
+              {images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => goToImage(i)}
+                  aria-label={`Image ${i + 1}`}
+                  style={{
+                    width: i === activeIndex ? 20 : 6,
+                    height: 6,
+                    borderRadius: 3,
+                    border: "none",
+                    background: i === activeIndex ? ac : `${ac}40`,
+                    cursor: "pointer",
+                    transition: "width 0.3s, background 0.3s",
+                    padding: 0,
+                  }}
+                />
+              ))}
+            </div>
+          )}
 
           {/* Floating particles */}
           {[...Array(6)].map((_, i) => (
