@@ -171,11 +171,10 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           .td-char-main {
             left: 50% !important;
             transform: translateX(-50%) scale(1) !important;
-            height: 75% !important;
-            width: 70% !important;
+            height: 88% !important;
+            width: 85% !important;
             bottom: 0 !important;
             top: auto !important;
-            padding-top: 3.5rem !important;
           }
           .td-char-sd-wrap {
             left: auto !important;
