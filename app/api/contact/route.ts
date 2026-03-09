@@ -17,21 +17,21 @@ export async function POST(req: NextRequest) {
 
     const formType = body["_formType"] === "individual" ? "個人" : "法人";
 
-    const mailBody = `SPIRUNAサイトからお問い合わせがありました。\n\n` +
+    const mailBody = `Spirunaサイトからお問い合わせがありました。\n\n` +
       `━━━━━━━━━━━━━━━━━━━━━━━━\n` +
       `お問い合わせ種別: ${formType}\n` +
       `━━━━━━━━━━━━━━━━━━━━━━━━\n\n` +
       `${fields}\n\n` +
       `━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-      `このメールはSPIRUNA公式サイトのお問い合わせフォームから自動送信されました。`;
+      `このメールはSpiruna公式サイトのお問い合わせフォームから自動送信されました。`;
 
     const fromAddress = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
     const toAddress = process.env.CONTACT_TO_EMAIL || "info@spiruna.jp";
 
     await getResend().emails.send({
-      from: `SPIRUNA お問い合わせ <${fromAddress}>`,
+      from: `Spiruna お問い合わせ <${fromAddress}>`,
       to: [toAddress],
-      subject: `【SPIRUNA】お問い合わせ（${formType}）: ${body["お名前"] || "名前未入力"}`,
+      subject: `【Spiruna】お問い合わせ（${formType}）: ${body["お名前"] || "名前未入力"}`,
       text: mailBody,
     });
 

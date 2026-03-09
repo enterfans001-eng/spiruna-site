@@ -23,7 +23,7 @@ const orbitron = Orbitron({
 });
 
 const SITE_URL = "https://spiruna.jp";
-const SITE_NAME = "SPIRUNA";
+const SITE_NAME = "Spiruna";
 const SITE_TITLE = "Vクリエイター事務所Spiruna | TikTokV公認提携ライブ配信事務所";
 const SITE_DESC =
   "Vクリエイター事務所Spirunaは、次世代バーチャルクリエイターの発掘・育成・マネジメントを行うTikTok公認提携エージェンシー(1次代理店)のVクリエイター事務所です。株式会社エンターファンズが運営。";
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   // ---------- 基本 ----------
   title: {
     default: SITE_TITLE,
-    template: "%s | SPIRUNA",
+    template: "%s | Spiruna",
   },
   description: SITE_DESC,
   metadataBase: new URL(SITE_URL),

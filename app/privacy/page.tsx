@@ -3,7 +3,7 @@ import { getPage } from "@/lib/microcms";
 import PrivacyContent from "./PrivacyContent";
 
 export const metadata: Metadata = {
-  title: "プライバシーポリシー | SPIRUNA",
+  title: "プライバシーポリシー | Spiruna",
   description: "Vクリエイター事務所スピルナのプライバシーポリシー・コンプライアンスに関するページです。",
 };
 

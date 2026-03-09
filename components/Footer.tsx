@@ -38,7 +38,7 @@ export default function Footer() {
             <div className="mb-4">
               <img
                 src="/logo-spiruna.png"
-                alt="SPIRUNA"
+                alt="Spiruna"
                 style={{ height: 64, width: "auto" }}
               />
             </div>
@@ -52,7 +52,7 @@ export default function Footer() {
           {/* Nav groups */}
           {navGroups.map((group) => (
             <div key={group.label}>
-              <p className="text-xs tracking-widest mb-5 uppercase" style={{ color: "var(--red)", letterSpacing: "0.2em" }}>
+              <p className="text-xs tracking-widest mb-8 uppercase" style={{ color: "var(--red)", letterSpacing: "0.2em" }}>
                 {group.label}
               </p>
               <nav className="flex flex-col gap-3">
@@ -76,7 +76,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col md:flex-row items-center justify-between" style={{ paddingTop: "2rem", borderTop: "1px solid rgba(255,0,51,0.08)", gap: "1rem" }}>
           <p className="text-xs" style={{ color: "var(--text-muted)" }}>
-            © 2026 SPIRUNA Agency. All rights reserved.
+            © 2026 Spiruna Agency. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             {[

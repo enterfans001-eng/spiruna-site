@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import type { Talent } from "@/lib/microcms";
 
 type Props = { talents: Talent[] };
-type SortKey = "default" | "name" | "nameEn" | "debut";
+type SortKey = "default" | "name" | "nameEn" | "debut" | "followers";
 
 export default function TalentsList({ talents }: Props) {
   const [loaded, setLoaded] = useState(false);
@@ -35,6 +35,8 @@ export default function TalentsList({ talents }: Props) {
       result = [...result].sort((a, b) => a.nameEn.localeCompare(b.nameEn));
     } else if (sort === "debut") {
       result = [...result].sort((a, b) => (a.debutDate || "").localeCompare(b.debutDate || ""));
+    } else if (sort === "followers") {
+      result = [...result].sort((a, b) => (b.tiktokFollowers || 0) - (a.tiktokFollowers || 0));
     }
     return result;
   }, [talents, search, sort]);
@@ -116,7 +118,7 @@ export default function TalentsList({ talents }: Props) {
             opacity: loaded ? 1 : 0, transform: loaded ? "none" : "translateY(10px)",
             transition: "opacity 0.6s 0.2s, transform 0.6s 0.2s",
           }}>
-            SPIRUNAに所属するクリエイターをご紹介します。
+            Spirunaに所属するクリエイターをご紹介します。
           </p>
         </div>
 
@@ -146,6 +148,7 @@ export default function TalentsList({ talents }: Props) {
               { key: "default", label: "デフォルト" },
               { key: "name", label: "名前順" },
               { key: "debut", label: "デビュー順" },
+              { key: "followers", label: "フォロワー順" },
             ] as { key: SortKey; label: string }[]).map((s) => (
               <button
                 key={s.key}

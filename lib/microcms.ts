@@ -53,6 +53,7 @@ export type Talent = {
   twitter?: string;
   youtube?: string;
   tiktok?: string;
+  tiktokFollowers?: number;
 } & MicroCMSListContent;
 
 export type Page = {

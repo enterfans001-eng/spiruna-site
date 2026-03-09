@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 
 const rows = [
   ["運営会社", "株式会社エンターファンズ"],
-  ["レーベル名", "SPIRUNA（スピルナ）"],
+  ["レーベル名", "Spiruna（スピルナ）"],
   ["事業内容", "TikTok Vクリエイターのマネジメント、プロデュース"],
 ];
 

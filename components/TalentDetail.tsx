@@ -10,6 +10,24 @@ type Props = {
   index?: number;
 };
 
+/** YouTubeのURL or Video IDからVideo IDのみを抽出 */
+function extractYouTubeId(input: string): string | null {
+  if (!input) return null;
+  // すでにIDだけ（11文字の英数字+ハイフン+アンダースコア）
+  if (/^[\w-]{11}$/.test(input.trim())) return input.trim();
+  try {
+    const url = new URL(input);
+    // youtube.com/watch?v=xxx
+    if (url.searchParams.has("v")) return url.searchParams.get("v");
+    // youtu.be/xxx or youtube.com/embed/xxx or youtube.com/shorts/xxx
+    const pathMatch = url.pathname.match(/^\/(embed\/|shorts\/|v\/)?([^/?]+)/);
+    if (pathMatch?.[2] && /^[\w-]{11}$/.test(pathMatch[2])) return pathMatch[2];
+  } catch {
+    // URLパース失敗 — そのまま返す
+  }
+  return input.trim();
+}
+
 export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
   const defaultColors = ["#ff0033", "#3366ff"];
   const ac = talent.accent || defaultColors[index % 2];
@@ -453,7 +471,7 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
             <div style={{ width: 30, height: 1, background: `${ac}40` }} />
             <span style={{ fontSize: "0.6rem", letterSpacing: "0.2em", color: "var(--text-muted)", fontFamily: "monospace" }}>
-              SPIRUNA VIRTUAL AGENCY
+              Spiruna VIRTUAL AGENCY
             </span>
           </div>
         </div>
@@ -547,28 +565,32 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
         )}
 
         {/* ── YouTube Preview ── */}
-        {talent.youtubeVideoId && (
-          <div style={{ marginBottom: "4rem" }}>
-            <p style={{ fontSize: "0.65rem", letterSpacing: "0.3em", color: ac, marginBottom: "1rem", textTransform: "uppercase" as const }}>
-              MOVIE
-            </p>
-            <div style={{
-              position: "relative", paddingBottom: "56.25%", height: 0,
-              border: `1px solid ${ac}20`, overflow: "hidden",
-            }}>
-              <iframe
-                src={`https://www.youtube.com/embed/${talent.youtubeVideoId}`}
-                title={`${talent.name} - YouTube`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                style={{
-                  position: "absolute", top: 0, left: 0,
-                  width: "100%", height: "100%", border: "none",
-                }}
-              />
+        {(() => {
+          const videoId = talent.youtubeVideoId ? extractYouTubeId(talent.youtubeVideoId) : null;
+          if (!videoId) return null;
+          return (
+            <div style={{ marginBottom: "4rem" }}>
+              <p style={{ fontSize: "0.65rem", letterSpacing: "0.3em", color: ac, marginBottom: "1rem", textTransform: "uppercase" as const }}>
+                MOVIE
+              </p>
+              <div style={{
+                position: "relative", paddingBottom: "56.25%", height: 0,
+                border: `1px solid ${ac}20`, overflow: "hidden",
+              }}>
+                <iframe
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                  title={`${talent.name} - YouTube`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={{
+                    position: "absolute", top: 0, left: 0,
+                    width: "100%", height: "100%", border: "none",
+                  }}
+                />
+              </div>
             </div>
-          </div>
-        )}
+          );
+        })()}
 
         {/* ── Back to talents list ── */}
         <div style={{ textAlign: "center", paddingTop: "2rem", borderTop: `1px solid ${ac}15` }}>

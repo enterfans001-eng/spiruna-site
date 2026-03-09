@@ -39,7 +39,7 @@ export default function Hero() {
       >
         <img
           src="/hero-character.png"
-          alt="SPIRUNA Key Visual"
+          alt="Spiruna Key Visual"
           className="absolute top-0 right-0 h-full object-cover object-center"
           style={{
             width: "100%",
@@ -94,7 +94,7 @@ export default function Hero() {
             fontFamily: "var(--font-cyber)",
           }}
         >
-          ◆ SPIRUNA // KEY VISUAL 2026
+          ◆ Spiruna // KEY VISUAL 2026
         </span>
       </div>
 
@@ -159,7 +159,7 @@ export default function Hero() {
       </div>
 
       {/* ─── Main Content: Left Side ─── */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-28 sm:pt-32 pb-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-16 sm:pt-20 pb-20">
         <div
           className="max-w-lg transition-all duration-1000"
           style={{
@@ -192,30 +192,17 @@ export default function Hero() {
 
           {/* Main Title */}
           <h1
-            className="heading-serif mb-3"
+            className="heading-serif mb-10"
             style={{
               fontSize: "clamp(3.5rem, 8vw, 6.5rem)",
-              lineHeight: 0.95,
+              lineHeight: 1.1,
               letterSpacing: "0.04em",
               color: "#ffffff",
               fontWeight: 400,
             }}
           >
-            SPIRUNA
+            Spiruna
           </h1>
-
-          {/* Japanese sub-title */}
-          <p
-            className="mb-2"
-            style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: "1.1rem",
-              color: "var(--red)",
-              letterSpacing: "0.3em",
-            }}
-          >
-            スピルナ
-          </p>
 
           {/* Typing text */}
           <div className="mb-6 mt-6 min-h-[2.5rem]">
@@ -232,7 +219,7 @@ export default function Hero() {
             className="text-sm leading-7 mb-10 max-w-sm"
             style={{ color: "rgba(255,255,255,0.35)" }}
           >
-            才能を発掘し、個性を磨き、TikTokの先へ——SPIRUNAは、光り輝く存在を生み出すTikTok V 専門事務所です。
+            才能を発掘し、個性を磨き、TikTokの先へ——Spirunaは、光り輝く存在を生み出すTikTok V 専門事務所です。
           </p>
 
           {/* CTA Buttons */}
@@ -281,7 +268,7 @@ export default function Hero() {
           fontFamily: "var(--font-cyber)",
         }}
       >
-        NEXT GEN · V-CREATOR · SPIRUNA
+        NEXT GEN · V-CREATOR · Spiruna
       </div>
     </section>
   );
