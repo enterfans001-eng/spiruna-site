@@ -51,10 +51,10 @@ export default function Footer() {
           {/* Nav groups */}
           {navGroups.map((group) => (
             <div key={group.label}>
-              <p className="text-xs tracking-widest mb-8 uppercase" style={{ color: "var(--red)", letterSpacing: "0.2em" }}>
+              <p className="text-xs tracking-widest mb-12 uppercase" style={{ color: "var(--red)", letterSpacing: "0.2em" }}>
                 {group.label}
               </p>
-              <nav className="flex flex-col gap-3">
+              <nav className="flex flex-col gap-5">
                 {group.links.map((link) => (
                   <a
                     key={link.href}
