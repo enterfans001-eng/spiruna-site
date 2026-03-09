@@ -108,10 +108,13 @@ export default function Talents({ talents }: Props) {
                 </div>
 
                 {/* Full character */}
-                {t.fullImg?.url && (
+                {(() => {
+                  const heroUrl = (t.fullImgs && t.fullImgs.length > 0) ? t.fullImgs[0].url : t.fullImg?.url;
+                  if (!heroUrl) return null;
+                  return (
                 <div className="absolute inset-0 flex items-start justify-center overflow-hidden">
                   <img
-                    src={t.fullImg.url}
+                    src={heroUrl}
                     alt={t.name}
                     className="char-full relative z-10"
                     style={{
@@ -123,7 +126,8 @@ export default function Talents({ talents }: Props) {
                     }}
                   />
                 </div>
-                )}
+                  );
+                })()}
 
                 {/* SD character - appears on hover */}
                 {t.sdImg?.url && (

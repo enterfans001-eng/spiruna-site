@@ -220,9 +220,12 @@ export default function TalentsList({ talents }: Props) {
                 }}>
                   {t.talentId}
                 </div>
-                {t.fullImg?.url && (
+                {(() => {
+                  const cardImgUrl = (t.fullImgs && t.fullImgs.length > 0) ? t.fullImgs[0].url : t.fullImg?.url;
+                  if (!cardImgUrl) return null;
+                  return (
                 <img
-                  src={t.fullImg.url}
+                  src={cardImgUrl}
                   alt={t.name}
                   className="tl-img"
                   style={{
@@ -231,7 +234,8 @@ export default function TalentsList({ talents }: Props) {
                     objectFit: "contain", objectPosition: "bottom center",
                   }}
                 />
-                )}
+                  );
+                })()}
               </div>
 
               {/* Info */}
