@@ -29,52 +29,64 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative overflow-hidden md:min-h-screen md:flex md:items-center"
       style={{ background: "#060608" }}
     >
-      {/* ─── Character Image: Right Half ─── */}
+      {/* ─── Character Image: Center ─── */}
+      {/* PC: covers entire section / Mobile: covers first 100vh only */}
       <div
-        className="absolute top-0 right-0 h-full w-full md:w-[60%] transition-opacity duration-1000"
+        className="absolute top-0 left-0 right-0 h-screen md:h-full md:bottom-0 transition-opacity duration-1000"
         style={{ opacity: loaded ? 1 : 0 }}
       >
         <img
           src="/hero-character.png"
           alt="Spiruna Key Visual"
-          className="absolute top-0 right-0 h-full object-cover object-center"
+          className="absolute top-0 left-1/2 -translate-x-1/2 h-full object-cover object-center"
           style={{
-            width: "100%",
+            width: "auto",
+            minWidth: "100%",
             minHeight: "100%",
             filter: "brightness(1.05) contrast(1.08)",
           }}
         />
 
-        {/* Left gradient fade — blends image into dark bg */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: "linear-gradient(to right, #060608 0%, #060608 5%, rgba(6,6,8,0.95) 15%, rgba(6,6,8,0.7) 35%, rgba(6,6,8,0.3) 55%, transparent 75%)",
-          }}
-        />
-
-        {/* Bottom gradient */}
+        {/* Bottom gradient — section boundary */}
         <div
           className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
           style={{ background: "linear-gradient(transparent, #060608)" }}
         />
 
-        {/* Top gradient (subtle) */}
+        {/* Text readability overlay — PC left side only */}
         <div
-          className="absolute top-0 left-0 right-0 h-32 pointer-events-none"
-          style={{ background: "linear-gradient(#060608, transparent)" }}
-        />
-
-        {/* Mobile overlay for text readability */}
-        <div
-          className="absolute inset-0 pointer-events-none md:hidden"
+          className="absolute inset-0 pointer-events-none hidden md:block"
           style={{
-            background: "linear-gradient(to bottom, rgba(6,6,8,0.4) 0%, rgba(6,6,8,0.6) 40%, rgba(6,6,8,0.85) 70%, #060608 100%)",
+            background: "linear-gradient(to right, rgba(6,6,8,0.7) 0%, rgba(6,6,8,0.4) 25%, transparent 50%)",
           }}
         />
+      </div>
+
+      {/* ─── Mobile: Scroll indicator on first screen ─── */}
+      <div
+        className="relative z-20 h-screen flex flex-col items-center justify-end pb-8 md:hidden"
+        style={{ pointerEvents: "none" }}
+      >
+        <span className="text-xs tracking-[0.3em]" style={{ color: "var(--text-muted)", fontFamily: "var(--font-cyber)" }}>
+          SCROLL
+        </span>
+        <div className="relative w-px h-12 mt-2">
+          <div
+            className="absolute top-0 w-px h-full"
+            style={{ background: "linear-gradient(to bottom, var(--red), transparent)" }}
+          />
+          <div
+            className="absolute w-1.5 h-1.5 rounded-full -left-[2px]"
+            style={{
+              background: "var(--red)",
+              animation: "data-stream 2s ease-in-out infinite",
+              boxShadow: "0 0 8px var(--red)",
+            }}
+          />
+        </div>
       </div>
 
       {/* ─── HUD: Top Right Label ─── */}
@@ -158,10 +170,16 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* ─── Main Content: Left Side ─── */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-16 sm:pt-20 pb-20">
+      {/* ─── Main Content ─── */}
+      {/* PC: overlays on image (centered by flex) / Mobile: below the fold with dark bg */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:pl-6 lg:pr-12 md:pt-20 md:pb-20">
+        {/* Mobile: dark background behind text area */}
         <div
-          className="max-w-lg transition-all duration-1000"
+          className="absolute inset-0 md:hidden"
+          style={{ background: "#060608" }}
+        />
+        <div
+          className="relative max-w-lg transition-all duration-1000 py-12 md:py-0"
           style={{
             opacity: loaded ? 1 : 0,
             transform: loaded ? "translateX(0)" : "translateX(-30px)",
@@ -217,7 +235,7 @@ export default function Hero() {
           {/* Description */}
           <p
             className="text-sm leading-7 mb-10 max-w-sm"
-            style={{ color: "rgba(255,255,255,0.35)" }}
+            style={{ color: "rgba(255,255,255,0.75)", textShadow: "0 2px 8px rgba(0,0,0,0.8)" }}
           >
             才能を発掘し、個性を磨き、TikTokの先へ——Spirunaは、光り輝く存在を生み出すTikTok V 専門事務所です。
           </p>
@@ -234,9 +252,9 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ─── Bottom: Scroll Indicator ─── */}
+      {/* ─── Bottom: Scroll Indicator (PC only) ─── */}
       <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 z-20 hidden md:flex"
         style={{ color: "var(--text-muted)" }}
       >
         <span className="text-xs tracking-[0.3em]" style={{ fontFamily: "var(--font-cyber)" }}>
