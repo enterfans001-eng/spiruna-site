@@ -245,9 +245,9 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
               filter: loaded ? "drop-shadow(0 0 60px rgba(0,0,0,0.6))" : "drop-shadow(0 0 60px rgba(0,0,0,0.6)) brightness(0.5)",
             }}
           >
-            {talent.fullImg?.url && (
+            {(talent.fullImg?.url || talent.fullImgs?.[0]?.url) && (
             <img
-              src={talent.fullImg.url}
+              src={(talent.fullImg?.url || talent.fullImgs?.[0]?.url)!}
               alt={talent.name}
               style={{
                 maxHeight: "100%", objectFit: "contain", objectPosition: "bottom center",

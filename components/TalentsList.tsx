@@ -206,9 +206,9 @@ export default function TalentsList({ talents }: Props) {
                 }}>
                   {t.talentId}
                 </div>
-                {t.fullImg?.url && (
+                {(t.fullImg?.url || t.fullImgs?.[0]?.url) && (
                 <img
-                  src={t.fullImg.url}
+                  src={(t.fullImg?.url || t.fullImgs?.[0]?.url)!}
                   alt={t.name}
                   className="tl-img"
                   style={{

@@ -108,10 +108,10 @@ export default function Talents({ talents }: Props) {
                 </div>
 
                 {/* Full character */}
-                {t.fullImg?.url && (
+                {(t.fullImg?.url || t.fullImgs?.[0]?.url) && (
                 <div className="absolute inset-0 flex items-start justify-center overflow-hidden">
                   <img
-                    src={t.fullImg.url}
+                    src={(t.fullImg?.url || t.fullImgs?.[0]?.url)!}
                     alt={t.name}
                     className="char-full relative z-10"
                     style={{
