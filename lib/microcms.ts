@@ -136,9 +136,12 @@ export async function getAdjacentNews(slug: string) {
 
 /** slug/talentId が未設定のタレントにフォールバック値を付与 */
 function normalizeTalent(t: Talent): Talent {
+  const autoSlug = t.nameEn
+    ? t.nameEn.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")
+    : t.id;
   return {
     ...t,
-    slug: t.slug || t.id,
+    slug: t.slug || autoSlug,
     talentId: t.talentId || t.id,
   };
 }
