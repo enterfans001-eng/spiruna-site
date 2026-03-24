@@ -118,7 +118,9 @@ export default function Talents({ talents }: Props) {
                       height: "160%",
                       objectFit: "contain",
                       objectPosition: "top",
-                      marginTop: "5%",
+                      marginTop: `${t.avatarY ?? 5}%`,
+                      marginLeft: `${t.avatarX ?? 0}%`,
+                      transform: `scale(${t.avatarScale ?? 1})`,
                       filter: "drop-shadow(0 0 24px rgba(0,0,0,0.5))",
                     }}
                   />

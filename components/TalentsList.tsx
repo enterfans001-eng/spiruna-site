@@ -146,7 +146,7 @@ export default function TalentsList({ talents }: Props) {
           <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
             {([
               { key: "default", label: "デフォルト" },
-              { key: "followers", label: "フォロワー順※月毎更新" },
+              { key: "followers", label: "フォロワー順" },
               { key: "name", label: "名前順" },
               { key: "debut", label: "デビュー順" },
             ] as { key: SortKey; label: string }[]).map((s) => (
@@ -166,6 +166,11 @@ export default function TalentsList({ talents }: Props) {
               </button>
             ))}
           </div>
+          {sort === "followers" && (
+            <p style={{ fontSize: "0.65rem", color: "var(--text-muted)", marginTop: "0.25rem", width: "100%" }}>
+              ※月毎更新
+            </p>
+          )}
         </div>
 
         {/* Result count */}
@@ -209,7 +214,9 @@ export default function TalentsList({ talents }: Props) {
                   className="tl-img"
                   style={{
                     position: "absolute", bottom: 0, left: "50%",
-                    transform: "translateX(-50%)", height: "90%",
+                    transform: `translateX(-50%) translateX(${t.avatarX ?? 0}%) scale(${t.avatarScale ?? 1})`,
+                    marginBottom: `${t.avatarY ?? 0}%`,
+                    height: "90%",
                     objectFit: "contain", objectPosition: "bottom center",
                   }}
                 />

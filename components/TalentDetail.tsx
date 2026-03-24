@@ -16,6 +16,14 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
   const grad = talent.gradient || `linear-gradient(135deg, ${ac}18 0%, rgba(6,6,8,0.95) 100%)`;
   const tags = talent.tag ? talent.tag.split("·").map((s) => s.trim()) : [];
   const [loaded, setLoaded] = useState(false);
+
+  // Extract YouTube video ID from URL or raw ID
+  const extractYoutubeId = (input?: string) => {
+    if (!input) return null;
+    const match = input.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([a-zA-Z0-9_-]{11})/);
+    return match ? match[1] : input.length === 11 ? input : null;
+  };
+  const ytId = extractYoutubeId(talent.youtubeVideoId);
   const [slideIdx, setSlideIdx] = useState(0);
   const allImages = talent.fullImgs?.length
     ? talent.fullImgs
@@ -28,6 +36,15 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
     const t = setTimeout(() => setLoaded(true), 100);
     return () => clearTimeout(t);
   }, []);
+
+  // Auto-slide every 4 seconds
+  useEffect(() => {
+    if (!hasMultiple) return;
+    const interval = setInterval(() => {
+      setSlideIdx((p) => (p + 1) % allImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [hasMultiple, allImages.length]);
 
   return (
     <div style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--text)", position: "relative", overflow: "hidden" }}>
@@ -594,7 +611,7 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
         )}
 
         {/* ── YouTube Preview ── */}
-        {talent.youtubeVideoId && (
+        {ytId && (
           <div style={{ marginBottom: "4rem" }}>
             <p style={{ fontSize: "0.65rem", letterSpacing: "0.3em", color: ac, marginBottom: "1rem", textTransform: "uppercase" as const }}>
               MOVIE
@@ -604,7 +621,7 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
               border: `1px solid ${ac}20`, overflow: "hidden",
             }}>
               <iframe
-                src={`https://www.youtube.com/embed/${talent.youtubeVideoId}`}
+                src={`https://www.youtube.com/embed/${ytId}`}
                 title={`${talent.name} - YouTube`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

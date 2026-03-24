@@ -1,0 +1,27 @@
+import { draftMode } from "next/headers";
+import { redirect } from "next/navigation";
+import { NextRequest } from "next/server";
+
+export async function GET(req: NextRequest) {
+  const { searchParams } = req.nextUrl;
+  const slug = searchParams.get("slug");
+  const contentId = searchParams.get("contentId");
+  const secret = searchParams.get("secret");
+
+  // Validate secret
+  if (secret !== process.env.PREVIEW_SECRET) {
+    return new Response("Invalid secret", { status: 401 });
+  }
+
+  // Enable Draft Mode
+  const draft = await draftMode();
+  draft.enable();
+
+  // Redirect to the talent page
+  const targetSlug = slug || contentId;
+  if (targetSlug) {
+    redirect(`/talents/${targetSlug}`);
+  }
+
+  redirect("/");
+}

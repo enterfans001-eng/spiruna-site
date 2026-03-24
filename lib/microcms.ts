@@ -52,6 +52,9 @@ export type Talent = {
   intro?: string;
   youtubeVideoId?: string;
   followers?: number;
+  avatarX?: number;
+  avatarY?: number;
+  avatarScale?: number;
   twitter?: string;
   youtube?: string;
   tiktok?: string;
