@@ -7,6 +7,7 @@ export async function GET(req: NextRequest) {
   const slug = searchParams.get("slug");
   const contentId = searchParams.get("contentId");
   const secret = searchParams.get("secret");
+  const type = searchParams.get("type"); // "news" or "talent"
 
   // Validate secret
   if (secret !== process.env.PREVIEW_SECRET) {
@@ -17,10 +18,14 @@ export async function GET(req: NextRequest) {
   const draft = await draftMode();
   draft.enable();
 
-  // Redirect to the talent page
-  const targetSlug = slug || contentId;
-  if (targetSlug) {
-    redirect(`/talents/${targetSlug}`);
+  const targetId = slug || contentId;
+
+  if (type === "news" && targetId) {
+    redirect(`/news/${targetId}`);
+  }
+
+  if (targetId) {
+    redirect(`/talents/${targetId}`);
   }
 
   redirect("/");

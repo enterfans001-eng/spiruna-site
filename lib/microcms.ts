@@ -104,18 +104,21 @@ export async function getNewsList() {
   }
 }
 
-export async function getNewsDetail(slug: string) {
+export async function getNewsDetail(idOrSlug: string) {
   try {
     const c = getClient();
     if (!c) return null;
+    // Try by slug first
     const data = await c.getList<NewsItem>({
       endpoint: "news",
       queries: {
-        filters: `slug[equals]${slug}`,
+        filters: `slug[equals]${idOrSlug}`,
         limit: 1,
       },
     });
-    const item = data.contents[0] ?? null;
+    if (data.contents[0]) return formatNews([data.contents[0]])[0];
+    // Fallback: try by microCMS ID
+    const item = await c.get<NewsItem>({ endpoint: "news", contentId: idOrSlug });
     return item ? formatNews([item])[0] : null;
   } catch {
     return null;
