@@ -214,7 +214,7 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
             transitionDelay: "1s",
           }}
         >
-          {talent.nameEn} — {talent.talentId}
+          {talent.nameEn}
         </div>
 
         {/* ─── Diagonal character background ─── */}
@@ -420,13 +420,15 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
             transitionDelay: "0.4s",
             marginBottom: "1.25rem",
           }}>
+            {talent.generation && (
             <div style={{
               display: "inline-block", background: `${ac}12`, border: `1px solid ${ac}35`,
               color: ac, fontSize: "0.6rem", letterSpacing: "0.25em", padding: "0.35rem 1rem",
               fontFamily: "monospace",
             }}>
-              {talent.talentId}
+              {talent.generation}
             </div>
+            )}
           </div>
 
           {/* Name */}
