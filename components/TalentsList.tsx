@@ -36,7 +36,7 @@ export default function TalentsList({ talents }: Props) {
     } else if (sort === "debut") {
       result = [...result].sort((a, b) => (a.debutDate || "").localeCompare(b.debutDate || ""));
     } else if (sort === "followers") {
-      result = [...result].sort((a, b) => (b.followers || 0) - (a.followers || 0));
+      result = [...result].sort((a, b) => (b.tiktokFollowers || b.followers || 0) - (a.tiktokFollowers || a.followers || 0));
     }
     return result;
   }, [talents, search, sort]);
