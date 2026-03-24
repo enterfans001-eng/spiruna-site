@@ -259,10 +259,12 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           <div
             className="td-char-main"
             style={{
-              position: "absolute", bottom: "1.5rem", left: "30%",
+              position: "absolute", bottom: "1.5rem",
+              left: `calc(30% + ${talent.avatarX ?? 0}%)`,
               transform: loaded
-                ? "translateX(-50%)"
+                ? `translateX(-50%) scale(${talent.avatarScale ?? 1})`
                 : "translateX(-50%) translateY(40px)",
+              marginBottom: `${talent.avatarY ?? 0}%`,
               opacity: loaded ? 1 : 0,
               height: "92%", top: "auto", zIndex: 5,
               display: "flex", alignItems: "flex-end",
