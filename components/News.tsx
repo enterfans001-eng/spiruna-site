@@ -6,6 +6,20 @@ import type { NewsItem } from "@/lib/microcms";
 
 type Props = { newsItems: NewsItem[] };
 
+const categoryColors: Record<string, string> = {
+  "お知らせ": "#3366ff",
+  "イベント": "#cc00ff",
+  "リリース": "#00cc88",
+  "メディア": "#ff6600",
+  "オーディション": "#ff0033",
+};
+
+function getCategoryColor(category?: string, accent?: string): string {
+  if (accent) return accent;
+  if (category && categoryColors[category]) return categoryColors[category];
+  return "#ff0033";
+}
+
 export default function News({ newsItems }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -84,14 +98,14 @@ export default function News({ newsItems }: Props) {
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span style={{
                     padding: "0.2rem 0.5rem",
-                    background: `${item.accent}20`,
-                    color: item.accent,
+                    background: `${getCategoryColor(item.category, item.accent)}20`,
+                    color: getCategoryColor(item.category, item.accent),
                     fontSize: "0.6rem",
                     letterSpacing: "0.15em",
                   }}>
                     {item.category}
                   </span>
-                  {item.isNew && (
+                  {i === 0 && (
                     <span style={{
                       padding: "0.15rem 0.4rem",
                       background: "var(--red)",
