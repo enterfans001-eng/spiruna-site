@@ -453,7 +453,7 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
             <div style={{ width: 30, height: 1, background: `${ac}40` }} />
             <span style={{ fontSize: "0.6rem", letterSpacing: "0.2em", color: "var(--text-muted)", fontFamily: "monospace" }}>
-              SPIRUNA VIRTUAL AGENCY
+              Spiruna VIRTUAL AGENCY
             </span>
           </div>
         </div>

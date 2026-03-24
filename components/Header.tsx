@@ -46,7 +46,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           {/* Logo */}
           <a href="/" className="flex items-center" style={{ padding: "4px 0" }}>
-            <img src="/logo-spiruna.png" alt="SPIRUNA" style={{ height: 32, width: "auto" }} />
+            <img src="/logo-spiruna.png" alt="Spiruna" style={{ height: 32, width: "auto" }} />
           </a>
 
           {/* Desktop Nav */}

@@ -154,16 +154,6 @@ export default function Talents({ talents }: Props) {
                 </div>
                 )}
 
-                {/* ID badge */}
-                <div className="absolute z-20" style={{ top: "0.75rem", right: "0.75rem" }}>
-                  <span style={{
-                    fontSize: "0.6rem", letterSpacing: "0.15em", fontFamily: "monospace",
-                    color: `${ac}80`,
-                  }}>
-                    {t.talentId}
-                  </span>
-                </div>
-
                 {/* Accent line bottom */}
                 <div className="accent-line absolute bottom-0 left-0 right-0 z-20" style={{ height: 3, background: ac }} />
               </div>

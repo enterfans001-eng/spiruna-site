@@ -118,7 +118,7 @@ export default function Hero() {
         >
           <img
             src="/hero-character.png"
-            alt="SPIRUNA Key Visual"
+            alt="Spiruna Key Visual"
             className="absolute top-0 right-0 h-full w-full object-cover object-center"
             style={{ filter: "brightness(1.05) contrast(1.08)" }}
           />
@@ -218,7 +218,7 @@ export default function Hero() {
         >
           <img
             src="/hero-character-mobile.png"
-            alt="SPIRUNA Key Visual"
+            alt="Spiruna Key Visual"
             className="absolute inset-0 w-full h-full object-cover object-top"
             style={{ filter: "brightness(1.05) contrast(1.08)" }}
           />

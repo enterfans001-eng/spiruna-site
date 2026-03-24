@@ -6,14 +6,14 @@ const pillars = [
     num: "01",
     title: "Value",
     titleJa: "TikTok V特化",
-    desc: "TikTok V No.1レーベル「SPIRUNA」は最速で伸びるためのコンテンツ戦略・運営サポート・成長導線を提供。",
+    desc: "TikTok V 専門レーベル「Spiruna」は最速で伸びるためのコンテンツ戦略・運営サポート・成長導線を提供。",
     accent: "#ff0033",
   },
   {
     num: "02",
     title: "Support",
     titleJa: "特待生制度あり",
-    desc: "SPIRUNAでは、過去配信実績があるクリエイター限定で高性能ゲーミングPCの無料貸出を行っております。詳しくは当事務所までお問い合わせください。",
+    desc: "Spirunaでは、過去配信実績があるクリエイター限定で高性能ゲーミングPCの貸出を行っております。詳しくは当事務所までお問い合わせください。",
     accent: "#cc00ff",
   },
   {
@@ -143,7 +143,7 @@ export default function Concept() {
                 <div className="concept-mission-text" style={{ borderLeft: "1px solid rgba(255,0,51,0.2)", paddingLeft: "2rem" }}>
                   <p style={{ fontSize: "0.8125rem", lineHeight: 1.9, color: "rgba(255,255,255,0.55)" }}>
                     どれだけ輝く才能を持っていても、正しい場所と環境がなければ届かない。
-                    SPIRUNAは、クリエイター一人ひとりの個性と夢を最大限に活かすため、
+                    Spirunaは、クリエイター一人ひとりの個性と夢を最大限に活かすため、
                     戦略・技術・コミュニティのすべてを提供します。
                   </p>
                 </div>

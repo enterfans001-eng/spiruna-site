@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "送信完了 | SPIRUNA",
+  title: "送信完了 | Spiruna",
 };
 
 export default function ThanksPage() {

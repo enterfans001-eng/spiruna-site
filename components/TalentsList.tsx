@@ -116,7 +116,7 @@ export default function TalentsList({ talents }: Props) {
             opacity: loaded ? 1 : 0, transform: loaded ? "none" : "translateY(10px)",
             transition: "opacity 0.6s 0.2s, transform 0.6s 0.2s",
           }}>
-            SPIRUNAに所属するクリエイターをご紹介します。
+            Spirunaに所属するクリエイターをご紹介します。
           </p>
         </div>
 
@@ -199,13 +199,6 @@ export default function TalentsList({ talents }: Props) {
               <div style={{
                 position: "relative", paddingBottom: "120%", overflow: "hidden",
               }}>
-                <div style={{
-                  position: "absolute", top: "0.5rem", right: "0.75rem",
-                  fontSize: "0.6rem", letterSpacing: "0.15em",
-                  color: ac, opacity: 0.7,
-                }}>
-                  {t.talentId}
-                </div>
                 {(t.fullImg?.url || t.fullImgs?.[0]?.url) && (
                 <img
                   src={(t.fullImg?.url || t.fullImgs?.[0]?.url)!}

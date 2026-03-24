@@ -2,8 +2,8 @@ import { getTalentsList } from "@/lib/microcms";
 import TalentsList from "@/components/TalentsList";
 
 export const metadata = {
-  title: "CREATORS | SPIRUNA",
-  description: "SPIRUNA所属クリエイターの一覧ページ。",
+  title: "CREATORS | Spiruna",
+  description: "Spiruna所属クリエイターの一覧ページ。",
 };
 
 export const revalidate = 60;

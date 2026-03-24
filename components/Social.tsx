@@ -34,7 +34,7 @@ const socials = [
   },
   {
     name: "Discord",
-    handle: "SPIRUNA Community",
+    handle: "Spiruna Community",
     desc: "タレントとファンが集まる公式コミュニティ。配信前の盛り上がりはここから。",
     icon: "◎",
     color: "#5865f2",
@@ -82,7 +82,7 @@ export default function Social() {
             SNS & お問い合わせ
           </h2>
           <p className="reveal delay-2" style={{ fontSize: "0.875rem", color: "var(--text-muted)" }}>
-            SPIRUNAの最新情報をフォローしよう。お仕事・取材のご依頼もこちらから。
+            Spirunaの最新情報をフォローしよう。お仕事・取材のご依頼もこちらから。
           </p>
         </div>
 
