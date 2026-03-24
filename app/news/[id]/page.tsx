@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const revalidate = 60;
+export const dynamicParams = true;
 
 type Props = { params: Promise<{ id: string }> };
 
