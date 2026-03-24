@@ -37,8 +37,8 @@ export default function NewsListContent({ newsItems }: Props) {
           <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
             {newsItems.map((item) => (
               <Link
-                key={item.slug}
-                href={`/news/${item.slug}`}
+                key={item.slug || item.id}
+                href={`/news/${item.slug || item.id}`}
                 style={{
                   display: "flex", gap: "1.25rem", alignItems: "center",
                   padding: "1.25rem", textDecoration: "none",

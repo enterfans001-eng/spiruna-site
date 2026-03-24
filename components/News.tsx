@@ -78,8 +78,8 @@ export default function News({ newsItems }: Props) {
         <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
           {newsItems.map((item, i) => (
             <Link
-              key={item.slug}
-              href={`/news/${item.slug}`}
+              key={item.slug || item.id}
+              href={`/news/${item.slug || item.id}`}
               className={`news-item card-cyber reveal delay-${(i % 3) + 1}`}
               style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "1.5rem", padding: "1.25rem 1.5rem" }}
             >
