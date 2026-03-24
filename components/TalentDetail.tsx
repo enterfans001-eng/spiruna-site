@@ -14,7 +14,7 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
   const defaultColors = ["#ff0033", "#3366ff"];
   const ac = talent.accent || defaultColors[index % 2];
   const grad = talent.gradient || `linear-gradient(135deg, ${ac}18 0%, rgba(6,6,8,0.95) 100%)`;
-  const tags = talent.tag ? talent.tag.split("·").map((s) => s.trim()) : [];
+  const tags = talent.generation ? [talent.generation] : [];
   const [loaded, setLoaded] = useState(false);
 
   // Extract YouTube video ID from URL or raw ID

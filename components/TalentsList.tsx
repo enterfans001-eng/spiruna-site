@@ -25,8 +25,7 @@ export default function TalentsList({ talents }: Props) {
       result = talents.filter((t) =>
         t.name.toLowerCase().includes(q) ||
         t.nameEn.toLowerCase().includes(q) ||
-        (t.tag || "").toLowerCase().includes(q) ||
-        (t.talentId || "").toLowerCase().includes(q)
+        (t.generation || "").toLowerCase().includes(q)
       );
     }
     if (sort === "name") {
@@ -188,7 +187,7 @@ export default function TalentsList({ talents }: Props) {
             const defaultColors = ["#ff0033", "#3366ff"];
             const ac = t.accent || defaultColors[i % 2];
             const grad = t.gradient || `linear-gradient(135deg, ${ac}18 0%, rgba(6,6,8,0.95) 100%)`;
-            const tags = t.tag ? t.tag.split(" · ") : [];
+            const tags = t.generation ? [t.generation] : [];
             return (
             <Link
               key={t.slug}
