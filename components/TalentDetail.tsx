@@ -413,24 +413,6 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
             zIndex: 10,
           }}
         >
-          {/* ID badge */}
-          <div className="td-info-item" style={{
-            opacity: loaded ? 1 : 0,
-            transform: loaded ? "translateX(0)" : "translateX(30px)",
-            transitionDelay: "0.4s",
-            marginBottom: "1.25rem",
-          }}>
-            {talent.generation && (
-            <div style={{
-              display: "inline-block", background: `${ac}12`, border: `1px solid ${ac}35`,
-              color: ac, fontSize: "0.6rem", letterSpacing: "0.25em", padding: "0.35rem 1rem",
-              fontFamily: "monospace",
-            }}>
-              {talent.generation}
-            </div>
-            )}
-          </div>
-
           {/* Name */}
           <div className="td-info-item" style={{
             opacity: loaded ? 1 : 0,
