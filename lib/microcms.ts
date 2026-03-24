@@ -105,10 +105,19 @@ export async function getNewsList() {
 }
 
 export async function getNewsDetail(idOrSlug: string) {
+  const c = getClient();
+  if (!c) return null;
+
+  // Try by microCMS ID first (most reliable)
   try {
-    const c = getClient();
-    if (!c) return null;
-    // Try by slug first
+    const item = await c.get<NewsItem>({ endpoint: "news", contentId: idOrSlug });
+    if (item) return formatNews([item])[0];
+  } catch {
+    // ID not found, try slug
+  }
+
+  // Fallback: try by slug
+  try {
     const data = await c.getList<NewsItem>({
       endpoint: "news",
       queries: {
@@ -117,12 +126,11 @@ export async function getNewsDetail(idOrSlug: string) {
       },
     });
     if (data.contents[0]) return formatNews([data.contents[0]])[0];
-    // Fallback: try by microCMS ID
-    const item = await c.get<NewsItem>({ endpoint: "news", contentId: idOrSlug });
-    return item ? formatNews([item])[0] : null;
   } catch {
-    return null;
+    // slug filter failed
   }
+
+  return null;
 }
 
 export async function getAdjacentNews(slug: string) {
