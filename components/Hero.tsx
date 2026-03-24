@@ -92,7 +92,7 @@ export default function Hero() {
 
       {/* CTA Buttons */}
       <div className="flex flex-wrap gap-4">
-        <a href="#talents" className="btn-primary">
+        <a href="#creators" className="btn-primary">
           <span style={{ color: "var(--cyan)" }}>◆</span> CREATORS
         </a>
         <a href="#audition" className="btn-ghost">

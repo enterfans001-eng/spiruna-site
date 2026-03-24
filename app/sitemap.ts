@@ -8,7 +8,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
     { url: BASE, lastModified: new Date(), changeFrequency: "weekly", priority: 1.0 },
     { url: `${BASE}/news`, lastModified: new Date(), changeFrequency: "daily", priority: 0.9 },
-    { url: `${BASE}/talents`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE}/creators`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE}/guidelines`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.4 },
     { url: `${BASE}/privacy`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.4 },
@@ -26,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 動的ページ: タレント
   const talents = await getTalentsList();
   const talentPages: MetadataRoute.Sitemap = talents.map((t) => ({
-    url: `${BASE}/talents/${t.slug}`,
+    url: `${BASE}/creators/${t.slug}`,
     lastModified: t.updatedAt ? new Date(t.updatedAt) : new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.8,

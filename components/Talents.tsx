@@ -24,7 +24,7 @@ export default function Talents({ talents }: Props) {
   }, []);
 
   return (
-    <section id="talents" ref={sectionRef} className="relative overflow-hidden" style={{ background: "var(--bg)", padding: "6rem 0" }}>
+    <section id="creators" ref={sectionRef} className="relative overflow-hidden" style={{ background: "var(--bg)", padding: "6rem 0" }}>
       <style>{`
         .talent-card { transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s; }
         .talent-card:hover { transform: translateY(-10px); box-shadow: 0 30px 80px rgba(0,0,0,0.4); }
@@ -70,7 +70,7 @@ export default function Talents({ talents }: Props) {
             return (
             <Link
               key={t.talentId}
-              href={`/talents/${t.slug}`}
+              href={`/creators/${t.slug}`}
               className={`talent-card card-cyber group cursor-pointer reveal delay-${(i % 3) + 1} overflow-hidden`}
               style={{ textDecoration: "none", display: "block" }}
             >
@@ -173,7 +173,7 @@ export default function Talents({ talents }: Props) {
         </div>
 
         <div className="text-center reveal delay-3" style={{ marginTop: "3rem" }}>
-          <a href="/talents" className="btn-ghost" style={{ fontSize: "0.75rem" }}>MORE CREATORS →</a>
+          <a href="/creators" className="btn-ghost" style={{ fontSize: "0.75rem" }}>MORE CREATORS →</a>
         </div>
       </div>
     </section>

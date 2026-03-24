@@ -81,7 +81,7 @@ export default function TalentsList({ talents }: Props) {
           transition: "opacity 0.6s, transform 0.6s",
         }}>
           <Link
-            href="/#talents"
+            href="/#creators"
             style={{
               display: "inline-flex", alignItems: "center", gap: "0.5rem",
               fontSize: "0.75rem", letterSpacing: "0.15em",
@@ -191,7 +191,7 @@ export default function TalentsList({ talents }: Props) {
             return (
             <Link
               key={t.slug}
-              href={`/talents/${t.slug}`}
+              href={`/creators/${t.slug}`}
               className="tl-card tl-item"
               style={{
                 textDecoration: "none", color: "inherit",

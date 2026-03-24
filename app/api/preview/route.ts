@@ -25,7 +25,7 @@ export async function GET(req: NextRequest) {
   }
 
   if (targetId) {
-    redirect(`/talents/${targetId}`);
+    redirect(`/creators/${targetId}`);
   }
 
   redirect("/");

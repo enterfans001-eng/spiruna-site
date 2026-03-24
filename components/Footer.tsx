@@ -5,7 +5,7 @@ export default function Footer() {
       label: "Agency",
       links: [
         { href: "/#concept", label: "Concept" },
-        { href: "/#talents", label: "Creators" },
+        { href: "/#creators", label: "Creators" },
         { href: "/#news", label: "News" },
       ],
     },

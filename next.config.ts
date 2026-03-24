@@ -49,6 +49,17 @@ const nextConfig: NextConfig = {
         destination: "https://spiruna.jp/:path*",
         permanent: true,
       },
+      // 旧 /talents → /creators リダイレクト
+      {
+        source: "/talents",
+        destination: "/creators",
+        permanent: true,
+      },
+      {
+        source: "/talents/:slug*",
+        destination: "/creators/:slug*",
+        permanent: true,
+      },
     ];
   },
 };
