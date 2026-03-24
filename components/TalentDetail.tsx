@@ -16,6 +16,13 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
   const grad = talent.gradient || `linear-gradient(135deg, ${ac}18 0%, rgba(6,6,8,0.95) 100%)`;
   const tags = talent.tag ? talent.tag.split("·").map((s) => s.trim()) : [];
   const [loaded, setLoaded] = useState(false);
+  const [slideIdx, setSlideIdx] = useState(0);
+  const allImages = talent.fullImgs?.length
+    ? talent.fullImgs
+    : talent.fullImg?.url
+      ? [talent.fullImg]
+      : [];
+  const hasMultiple = allImages.length > 1;
 
   useEffect(() => {
     const t = setTimeout(() => setLoaded(true), 100);
@@ -245,16 +252,56 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
               filter: loaded ? "drop-shadow(0 0 60px rgba(0,0,0,0.6))" : "drop-shadow(0 0 60px rgba(0,0,0,0.6)) brightness(0.5)",
             }}
           >
-            {(talent.fullImg?.url || talent.fullImgs?.[0]?.url) && (
+            {allImages.length > 0 && (
             <img
-              src={(talent.fullImg?.url || talent.fullImgs?.[0]?.url)!}
+              src={allImages[slideIdx]?.url}
               alt={talent.name}
               style={{
                 maxHeight: "100%", objectFit: "contain", objectPosition: "bottom center",
+                transition: "opacity 0.4s ease",
               }}
             />
             )}
           </div>
+
+          {/* ─── Slide controls ─── */}
+          {hasMultiple && (
+          <div style={{
+            position: "absolute", bottom: "1rem", left: "30%",
+            transform: "translateX(-50%)", zIndex: 20,
+            display: "flex", gap: "0.5rem", alignItems: "center",
+          }}>
+            <button
+              onClick={() => setSlideIdx((p) => (p - 1 + allImages.length) % allImages.length)}
+              style={{
+                width: 28, height: 28, borderRadius: "50%",
+                background: "rgba(0,0,0,0.6)", border: `1px solid ${ac}60`,
+                color: "#fff", fontSize: "0.75rem", cursor: "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}
+            >◀</button>
+            {allImages.map((_, i) => (
+              <div
+                key={i}
+                onClick={() => setSlideIdx(i)}
+                style={{
+                  width: i === slideIdx ? 16 : 6, height: 6, borderRadius: 3,
+                  background: i === slideIdx ? ac : "rgba(255,255,255,0.3)",
+                  cursor: "pointer", transition: "all 0.3s",
+                }}
+              />
+            ))}
+            <button
+              onClick={() => setSlideIdx((p) => (p + 1) % allImages.length)}
+              style={{
+                width: 28, height: 28, borderRadius: "50%",
+                background: "rgba(0,0,0,0.6)", border: `1px solid ${ac}60`,
+                color: "#fff", fontSize: "0.75rem", cursor: "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}
+            >▶</button>
+          </div>
+          )}
 
           {/* Floating particles */}
           {[...Array(6)].map((_, i) => (

@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import type { Talent } from "@/lib/microcms";
 
 type Props = { talents: Talent[] };
-type SortKey = "default" | "name" | "nameEn" | "debut";
+type SortKey = "default" | "name" | "nameEn" | "debut" | "followers";
 
 export default function TalentsList({ talents }: Props) {
   const [loaded, setLoaded] = useState(false);
@@ -35,6 +35,8 @@ export default function TalentsList({ talents }: Props) {
       result = [...result].sort((a, b) => a.nameEn.localeCompare(b.nameEn));
     } else if (sort === "debut") {
       result = [...result].sort((a, b) => (a.debutDate || "").localeCompare(b.debutDate || ""));
+    } else if (sort === "followers") {
+      result = [...result].sort((a, b) => (b.followers || 0) - (a.followers || 0));
     }
     return result;
   }, [talents, search, sort]);
@@ -144,6 +146,7 @@ export default function TalentsList({ talents }: Props) {
           <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
             {([
               { key: "default", label: "デフォルト" },
+              { key: "followers", label: "フォロワー順※月毎更新" },
               { key: "name", label: "名前順" },
               { key: "debut", label: "デビュー順" },
             ] as { key: SortKey; label: string }[]).map((s) => (
