@@ -111,14 +111,14 @@ export default function Audition() {
             Spirunaは常に新しいクリエイターを求めています。
           </p>
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-            <a href="https://lin.ee/AzRlJ3Vr" target="_blank" rel="noopener noreferrer" className="aud-cta-btn" style={{
+            <a href="/audition" className="aud-cta-btn" style={{
               display: "inline-flex", alignItems: "center", gap: "0.5rem",
               padding: "0.9rem 2.5rem",
               background: "var(--red)", color: "#fff",
               fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.1em",
               textDecoration: "none",
             }}>
-              LINEから今すぐ応募
+              オーディションに応募する
             </a>
           </div>
 
