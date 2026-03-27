@@ -189,8 +189,8 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
 /* ─── Hero Slider ─── */
 
 const kvImages = [
-  { src: "/lp-kv1.png", alt: "才能に、居場所を。" },
-  { src: "/lp-kv2.png", alt: "一期生大募集" },
+  { src: "/lp-kv1.png", srcPc: "/lp-kv1-pc.png", alt: "才能に、居場所を。" },
+  { src: "/lp-kv2.png", srcPc: "/lp-kv2-pc.png", alt: "一期生大募集" },
 ];
 
 function HeroSlider({ heroRef }: { heroRef: React.RefObject<HTMLElement | null> }) {
@@ -228,31 +228,37 @@ function HeroSlider({ heroRef }: { heroRef: React.RefObject<HTMLElement | null> 
         {/* Slides */}
         <div className="lp-hero-slide-wrap" style={{ position: "relative", width: "100%", overflow: "hidden", background: "var(--bg)" }}>
           {/* Hidden image to set natural height */}
-          <img
-            src={kvImages[0].src}
-            alt=""
-            className="lp-hero-spacer"
-            style={{ width: "100%", height: "auto", display: "block", visibility: "hidden" }}
-          />
+          <picture className="lp-hero-spacer" style={{ width: "100%", display: "block", visibility: "hidden" }}>
+            <source media="(min-width: 769px)" srcSet={kvImages[0].srcPc} />
+            <img src={kvImages[0].src} alt="" style={{ width: "100%", height: "auto", display: "block" }} />
+          </picture>
           {kvImages.map((img, i) => (
-            <img
+            <picture
               key={i}
-              src={img.src}
-              alt={img.alt}
-              className="lp-hero-img"
               style={{
                 position: "absolute",
                 top: 0,
                 left: 0,
                 width: "100%",
                 height: "100%",
-                objectFit: "cover",
-                objectPosition: "center top",
-                display: "block",
                 opacity: current === i ? 1 : 0,
                 transition: "opacity 0.8s ease-in-out",
               }}
-            />
+            >
+              <source media="(min-width: 769px)" srcSet={img.srcPc} />
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="lp-hero-img"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "center top",
+                  display: "block",
+                }}
+              />
+            </picture>
           ))}
           {/* Bottom gradient fade to next section */}
           <div
