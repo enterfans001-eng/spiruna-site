@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export default function FloatingCTA() {
+export default function FloatingCTA({ href = "/audition", external = false }: { href?: string; external?: boolean }) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -15,7 +15,8 @@ export default function FloatingCTA() {
 
   return (
     <a
-      href="/audition"
+      href={href}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       aria-label="V CREATOR 募集中"
       className="floating-cta-outer"
       style={{

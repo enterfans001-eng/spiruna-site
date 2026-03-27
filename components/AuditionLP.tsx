@@ -5,7 +5,7 @@ import type { Talent } from "@/lib/microcms";
 
 /* ─── Data ─── */
 
-const LINE_URL = "https://lin.ee/AzRlJ3Vr";
+const LINE_URL = "https://lin.ee/Xj5yngP";
 
 declare global {
   interface Window { fbq?: (...args: unknown[]) => void; }

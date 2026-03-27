@@ -56,7 +56,7 @@ export default async function AuditionPage() {
         />
       </noscript>
       <Header />
-      <FloatingCTA />
+      <FloatingCTA href="https://lin.ee/Xj5yngP" external />
       <main>
         <AuditionLP talents={talents} />
       </main>
