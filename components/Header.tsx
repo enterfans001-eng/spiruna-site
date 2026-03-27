@@ -64,7 +64,7 @@ export default function Header() {
               </a>
             ))}
             <a
-              href="/#audition"
+              href="/audition"
               className="btn-primary text-xs"
             >
               <span>✦</span> AUDITION
@@ -114,7 +114,7 @@ export default function Header() {
                 {l.label}
               </a>
             ))}
-            <a href="/#audition" onClick={() => setMenuOpen(false)} className="btn-primary text-xs w-fit">
+            <a href="/audition" onClick={() => setMenuOpen(false)} className="btn-primary text-xs w-fit">
               <span>✦</span> AUDITION
             </a>
           </div>
