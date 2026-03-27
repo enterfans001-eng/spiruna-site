@@ -15,11 +15,8 @@ export default function FloatingCTA() {
 
   return (
     <a
-      href="https://lin.ee/AzRlJ3Vr"
-      target="_blank"
-      rel="noopener noreferrer"
+      href="/audition"
       aria-label="V CREATOR 募集中"
-      onClick={() => { if (typeof window !== "undefined" && "fbq" in window) { (window as unknown as { fbq: (...args: string[]) => void }).fbq("track", "CompleteRegistration"); } }}
       className="floating-cta-outer"
       style={{
         position: "fixed",
