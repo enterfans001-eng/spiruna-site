@@ -12,7 +12,7 @@ export default function Footer() {
     {
       label: "Join Us",
       links: [
-        { href: "/#audition", label: "Audition" },
+        { href: "/audition", label: "Audition" },
         { href: "/contact", label: "Contact" },
       ],
     },
