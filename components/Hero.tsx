@@ -95,7 +95,7 @@ export default function Hero() {
         <a href="#creators" className="btn-primary">
           <span style={{ color: "var(--cyan)" }}>◆</span> CREATORS
         </a>
-        <a href="#audition" className="btn-ghost">
+        <a href="/audition" className="btn-ghost">
           AUDITION →
         </a>
       </div>
