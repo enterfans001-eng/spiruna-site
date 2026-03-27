@@ -462,7 +462,7 @@ export default function AuditionLP({ talents }: Props) {
             ))}
           </div>
 
-          <div className="text-center reveal delay-3" style={{ marginTop: "2.5rem" }}>
+          <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
             <a
               href={LINE_URL}
               target="_blank"
