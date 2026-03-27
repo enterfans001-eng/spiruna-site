@@ -461,6 +461,30 @@ export default function AuditionLP({ talents }: Props) {
               </div>
             ))}
           </div>
+
+          <div className="text-center reveal delay-3" style={{ marginTop: "2.5rem" }}>
+            <a
+              href={LINE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={trackCTAClick}
+              className="lp-cta-btn"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                padding: "1rem 3rem",
+                background: "var(--red)",
+                color: "#fff",
+                fontSize: "0.85rem",
+                fontWeight: 600,
+                letterSpacing: "0.1em",
+                textDecoration: "none",
+              }}
+            >
+              LINEから今すぐ応募
+            </a>
+          </div>
         </div>
       </section>
 
