@@ -576,15 +576,21 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
                 <span style={{ fontSize: "0.9rem" }}>𝕏</span> X
               </a>
             )}
-            {talent.liveApp1 && (
-              <a href={talent.liveApp1} target="_blank" rel="noopener noreferrer" className="td-social-btn" style={{
-                padding: "0.7rem 1.5rem", border: `1px solid ${ac}30`,
-                color: "var(--text)", fontSize: "0.75rem", letterSpacing: "0.1em", textDecoration: "none",
-                display: "flex", alignItems: "center", gap: "0.5rem",
-              }}>
-                <span style={{ fontSize: "0.9rem" }}>📡</span> {talent.liveApp1.includes("iriam") ? "IRIAM" : talent.liveApp1.includes("17.live") ? "17LIVE" : "配信アプリ"}
-              </a>
-            )}
+            {talent.liveApp1 && (() => {
+              const isIriam = talent.liveApp1!.toLowerCase().includes("iriam");
+              const is17 = talent.liveApp1!.toLowerCase().includes("17.live") || talent.liveApp1!.toLowerCase().includes("17live");
+              const icon = isIriam ? "/icon-iriam.jpg" : is17 ? "/icon-17live.jpg" : "/icon-17live.jpg";
+              const label = isIriam ? "IRIAM" : is17 ? "17LIVE" : "配信アプリ";
+              return (
+                <a href={talent.liveApp1} target="_blank" rel="noopener noreferrer" className="td-social-btn" style={{
+                  padding: "0.7rem 1.5rem", border: `1px solid ${ac}30`,
+                  color: "var(--text)", fontSize: "0.75rem", letterSpacing: "0.1em", textDecoration: "none",
+                  display: "flex", alignItems: "center", gap: "0.5rem",
+                }}>
+                  <img src={icon} alt={label} style={{ width: 20, height: 20, borderRadius: 4, objectFit: "cover" }} /> {label}
+                </a>
+              );
+            })()}
           </div>
         </div>
 
