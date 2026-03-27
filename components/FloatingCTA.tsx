@@ -19,7 +19,7 @@ export default function FloatingCTA() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="V CREATOR 募集中"
-      onClick={() => { if (typeof window !== "undefined" && (window as Record<string, unknown>).fbq) { ((window as Record<string, unknown>).fbq as Function)("track", "CompleteRegistration"); } }}
+      onClick={() => { if (typeof window !== "undefined" && "fbq" in window) { (window as unknown as { fbq: (...args: string[]) => void }).fbq("track", "CompleteRegistration"); } }}
       className="floating-cta-outer"
       style={{
         position: "fixed",
