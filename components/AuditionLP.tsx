@@ -505,7 +505,7 @@ export default function AuditionLP({ talents }: Props) {
               return (
                 <Link
                   key={t.talentId}
-                  href={`/CREATORS/${t.slug}`}
+                  href={`/creators/${t.slug}`}
                   className={`talent-lp-card card-cyber group reveal delay-${(i % 4) + 1} overflow-hidden`}
                   style={{ textDecoration: "none", display: "block" }}
                 >
@@ -560,7 +560,7 @@ export default function AuditionLP({ talents }: Props) {
           </div>
 
           <div className="text-center reveal delay-3" style={{ marginTop: "2.5rem" }}>
-            <a href="/CREATORS" className="btn-ghost" style={{ fontSize: "0.75rem" }}>
+            <a href="/creators" className="btn-ghost" style={{ fontSize: "0.75rem" }}>
               ALL CREATORS →
             </a>
           </div>
