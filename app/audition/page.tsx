@@ -9,20 +9,20 @@ import { getTalentsList } from "@/lib/microcms";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "オーディション | Spiruna — TikTok V Creator Agency",
+  title: "1期生大募集！！TikV事務所専門オーディション | Spiruna",
   description:
-    "Spirunaでは新たなバーチャルクリエイターを募集中。TikTok特化の支援体制で、あなたの才能を最大限に活かします。経験不問、今すぐエントリー。",
+    "TikTok V専門事務所Spirunaがオーディション開催中！",
   openGraph: {
-    title: "オーディション | Spiruna",
+    title: "1期生大募集！！TikV事務所専門オーディション | Spiruna",
     description:
-      "TikTok V専門事務所Spirunaがオーディション開催中。キャラデザ提供・収益化サポート・コンテンツ戦略で全面バックアップ。",
+      "TikTok V専門事務所Spirunaがオーディション開催中！",
     url: "https://spiruna.jp/audition",
-    images: [{ url: "https://spiruna.jp/audition-hero.png", width: 1200, height: 630 }],
+    images: [{ url: "https://spiruna.jp/lp-kv2-pc.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "オーディション | Spiruna",
-    description: "TikTok V専門事務所Spirunaがオーディション開催中。",
+    title: "1期生大募集！！TikV事務所専門オーディション | Spiruna",
+    description: "TikTok V専門事務所Spirunaがオーディション開催中！",
   },
 };
 
