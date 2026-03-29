@@ -62,6 +62,19 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      // /media → WordPress (media.spiruna.jp) に転送
+      {
+        source: "/media",
+        destination: "https://media.spiruna.jp",
+      },
+      {
+        source: "/media/:path*",
+        destination: "https://media.spiruna.jp/:path*",
+      },
+    ];
+  },
 };
 
 export default nextConfig;
