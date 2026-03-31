@@ -10,14 +10,12 @@ export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "1期生大募集！！TikV事務所専門オーディション | Spiruna",
-  description:
-    "TikTok V専門事務所Spirunaがオーディション開催中！",
+  description: "TikTok V専門事務所Spirunaがオーディション開催中！",
   openGraph: {
     title: "1期生大募集！！TikV事務所専門オーディション | Spiruna",
-    description:
-      "TikTok V専門事務所Spirunaがオーディション開催中！",
+    description: "TikTok V専門事務所Spirunaがオーディション開催中！",
     url: "https://spiruna.jp/audition",
-    images: [{ url: "https://spiruna.jp/lp-kv2-pc.png", width: 1200, height: 630 }],
+    images: [{ url: "https://spiruna.jp/lp-kv2.png", width: 1200, height: 1200 }],
   },
   twitter: {
     card: "summary_large_image",
@@ -56,7 +54,7 @@ export default async function AuditionPage() {
         />
       </noscript>
       <Header />
-      <FloatingCTA href="https://lin.ee/Xj5yngP" external />
+      <FloatingCTA />
       <main>
         <AuditionLP talents={talents} />
       </main>
