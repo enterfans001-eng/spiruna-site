@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     locale: "ja_JP",
     images: [
       {
-        url: "/hero-kv.jpg",
+        url: "/ogp-spiruna.png",
         width: 1200,
         height: 630,
         alt: "Vクリエイター事務所Spiruna",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESC,
-    images: ["/hero-kv.jpg"],
+    images: ["/ogp-spiruna.png"],
   },
 
   // ---------- ファビコン ----------
