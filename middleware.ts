@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const response = NextResponse.next();
+  // リクエストヘッダーに X-From-Vercel を追加してバックエンドに転送
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("X-From-Vercel", "true");
 
-  // /media/* へのリクエストに X-From-Vercel ヘッダーを追加
-  // これにより WordPress 側(.htaccess)でVercel経由かどうかを判別できる
-  response.headers.set("X-From-Vercel", "true");
-
-  return response;
+  return NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
 }
 
 export const config = {
