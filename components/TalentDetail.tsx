@@ -103,9 +103,9 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
 
         @media (max-width: 768px) {
           .td-diagonal-bg {
-            clip-path: polygon(0 0, 100% 0, 100% 80%, 0 95%) !important;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%) !important;
             width: 100% !important;
-            height: 65vh !important;
+            height: 70vh !important;
             position: relative !important;
           }
           .td-diagonal-bg.initial {
@@ -128,8 +128,8 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           .td-char-main {
             left: 50% !important;
             transform: translateX(-50%) scale(1) !important;
-            height: 80% !important;
-            bottom: 3rem !important;
+            height: 85% !important;
+            bottom: 1rem !important;
           }
           .td-char-sd-wrap {
             left: auto !important;
@@ -138,6 +138,10 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           }
           .td-char-sd-wrap img {
             height: 130px !important;
+          }
+          .td-slide-controls {
+            left: 50% !important;
+            bottom: 2rem !important;
           }
           .td-diagonal-edge {
             display: none !important;
@@ -285,7 +289,7 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
 
           {/* ─── Slide controls ─── */}
           {hasMultiple && (
-          <div style={{
+          <div className="td-slide-controls" style={{
             position: "absolute", bottom: "1rem", left: "30%",
             transform: "translateX(-50%)", zIndex: 20,
             display: "flex", gap: "0.5rem", alignItems: "center",
