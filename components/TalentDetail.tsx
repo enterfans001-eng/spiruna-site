@@ -103,9 +103,9 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
 
         @media (max-width: 768px) {
           .td-diagonal-bg {
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%) !important;
+            clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%) !important;
             width: 100% !important;
-            height: 70vh !important;
+            height: 75vh !important;
             position: relative !important;
           }
           .td-diagonal-bg.initial {
@@ -127,8 +127,8 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           }
           .td-char-main {
             left: 50% !important;
-            transform: translateX(-50%) scale(1) !important;
-            height: 75% !important;
+            transform: translateX(-50%) translateY(-8%) scale(1) !important;
+            height: 85% !important;
             bottom: 0 !important;
           }
           .td-char-sd-wrap {
