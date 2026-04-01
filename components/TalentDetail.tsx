@@ -128,8 +128,8 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           .td-char-main {
             left: 50% !important;
             transform: translateX(-50%) scale(1) !important;
-            height: 85% !important;
-            bottom: 1rem !important;
+            height: 75% !important;
+            bottom: 0 !important;
           }
           .td-char-sd-wrap {
             left: auto !important;
