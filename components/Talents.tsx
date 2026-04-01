@@ -41,7 +41,8 @@ export default function Talents({ talents }: Props) {
         .talent-card .tag-badge { opacity: 1; transform: translateX(0); transition: opacity 0.3s 0.1s, transform 0.4s 0.1s; }
         .talent-card:hover .tag-badge { opacity: 1; transform: translateX(0); }
         @media (max-width: 768px) {
-          .talents-grid { grid-template-columns: 1fr !important; }
+          .talents-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .talents-grid .talent-card:nth-child(n+5) { display: none !important; }
         }
         @media (min-width: 769px) and (max-width: 1024px) {
           .talents-grid { grid-template-columns: repeat(2, 1fr) !important; }
@@ -62,7 +63,7 @@ export default function Talents({ talents }: Props) {
         </div>
 
         <div className="talents-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
-          {talents.map((t, i) => {
+          {talents.slice(0, 9).map((t, i) => {
             const defaultColors = ["#ff0033", "#3366ff"];
             const ac = t.accent || defaultColors[i % 2];
             const grad = t.gradient || `linear-gradient(135deg, ${ac}18 0%, rgba(6,6,8,0.95) 100%)`;
