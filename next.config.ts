@@ -65,13 +65,14 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       // /media → WordPress (media.spiruna.jp) に転送
+      // ?_vproxy=1 を付与することで WordPress 側が「Vercel経由のアクセス」と判定できる
       {
         source: "/media",
-        destination: "https://media.spiruna.jp",
+        destination: "https://media.spiruna.jp?_vproxy=1",
       },
       {
         source: "/media/:path*",
-        destination: "https://media.spiruna.jp/:path*",
+        destination: "https://media.spiruna.jp/:path*?_vproxy=1",
       },
     ];
   },
