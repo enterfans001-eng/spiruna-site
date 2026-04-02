@@ -117,7 +117,7 @@ export default function Hero() {
           style={{ opacity: loaded ? 1 : 0 }}
         >
           <img
-            src="/hero-character.png"
+            src="/hero-character.webp"
             alt="Spiruna Key Visual"
             className="absolute top-0 right-0 h-full w-full object-cover object-center"
             style={{ filter: "brightness(1.05) contrast(1.08)" }}
@@ -217,7 +217,7 @@ export default function Hero() {
           style={{ opacity: loaded ? 1 : 0, height: "100svh" }}
         >
           <img
-            src="/hero-character-mobile.png"
+            src="/hero-character-mobile.webp"
             alt="Spiruna Key Visual"
             className="absolute inset-0 w-full h-full object-cover object-top"
             style={{ filter: "brightness(1.05) contrast(1.08)" }}

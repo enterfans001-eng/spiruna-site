@@ -3,6 +3,7 @@ import { useEffect, useRef, useCallback } from "react";
 
 export default function CursorEffect() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const isMobile = useRef(false);
   const mouse = useRef({ x: -100, y: -100 });
   const particles = useRef<Particle[]>([]);
   const ripples = useRef<Ripple[]>([]);
@@ -43,6 +44,11 @@ export default function CursorEffect() {
   }, []);
 
   useEffect(() => {
+    // Skip on mobile/touch devices for performance
+    if ("ontouchstart" in window || navigator.maxTouchPoints > 0 || window.innerWidth < 769) {
+      isMobile.current = true;
+      return;
+    }
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");

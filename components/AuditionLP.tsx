@@ -50,28 +50,28 @@ const fallbackTalents: Talent[] = [
     id: "1", createdAt: "", updatedAt: "", publishedAt: "", revisedAt: "",
     name: "クリエイター1", nameEn: "Creator 01",
     accent: "#ff0033",
-    fullImg: { url: "/talent1-full.png", width: 800, height: 1200 },
+    fullImg: { url: "/talent1-full.webp", width: 800, height: 1200 },
     slug: "creator-1",
   },
   {
     id: "2", createdAt: "", updatedAt: "", publishedAt: "", revisedAt: "",
     name: "クリエイター2", nameEn: "Creator 02",
     accent: "#3366ff",
-    fullImg: { url: "/talent2-full.png", width: 800, height: 1200 },
+    fullImg: { url: "/talent2-full.webp", width: 800, height: 1200 },
     slug: "creator-2",
   },
   {
     id: "3", createdAt: "", updatedAt: "", publishedAt: "", revisedAt: "",
     name: "クリエイター3", nameEn: "Creator 03",
     accent: "#ff0033",
-    fullImg: { url: "/talent3-full.png", width: 800, height: 1200 },
+    fullImg: { url: "/talent3-full.webp", width: 800, height: 1200 },
     slug: "creator-3",
   },
   {
     id: "4", createdAt: "", updatedAt: "", publishedAt: "", revisedAt: "",
     name: "クリエイター4", nameEn: "Creator 04",
     accent: "#3366ff",
-    fullImg: { url: "/talent1-full.png", width: 800, height: 1200 },
+    fullImg: { url: "/talent1-full.webp", width: 800, height: 1200 },
     slug: "creator-4",
   },
 ];
@@ -189,8 +189,8 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
 /* ─── Hero Slider ─── */
 
 const kvImages = [
-  { src: "/lp-kv1.png", srcPc: "/lp-kv1-pc.png", alt: "才能に、居場所を。" },
-  { src: "/lp-kv2.png", srcPc: "/lp-kv2-pc.png", alt: "一期生大募集" },
+  { src: "/lp-kv1.webp", srcPc: "/lp-kv1-pc.webp", alt: "才能に、居場所を。" },
+  { src: "/lp-kv2.webp", srcPc: "/lp-kv2-pc.webp", alt: "一期生大募集" },
 ];
 
 function HeroSlider({ heroRef }: { heroRef: React.RefObject<HTMLElement | null> }) {

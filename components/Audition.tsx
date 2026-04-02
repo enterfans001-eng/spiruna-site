@@ -46,7 +46,7 @@ export default function Audition() {
         {/* BG Image */}
         <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
           <img
-            src="/audition-hero.png"
+            src="/audition-hero.webp"
             alt=""
             style={{
               width: "100%", height: "100%",
