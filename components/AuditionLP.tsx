@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import type { Talent } from "@/lib/microcms";
+import { type Talent, optimizeImg } from "@/lib/microcms";
 
 /* ─── Data ─── */
 
@@ -557,7 +557,7 @@ export default function AuditionLP({ talents }: Props) {
                     {heroUrl && (
                       <div className="absolute inset-0 flex items-start justify-center overflow-hidden">
                         <img
-                          src={heroUrl}
+                          src={optimizeImg(heroUrl, 600)}
                           alt={t.name}
                           className="char-img relative z-10"
                           style={{

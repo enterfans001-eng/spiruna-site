@@ -3,7 +3,7 @@ import { useEffect, useState, useMemo } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import type { Talent } from "@/lib/microcms";
+import { type Talent, optimizeImg } from "@/lib/microcms";
 
 type Props = { talents: Talent[] };
 type SortKey = "default" | "name" | "nameEn" | "debut" | "followers";
@@ -208,7 +208,7 @@ export default function TalentsList({ talents }: Props) {
               }}>
                 {(t.fullImg?.url || t.fullImgs?.[0]?.url) && (
                 <img
-                  src={(t.fullImg?.url || t.fullImgs?.[0]?.url)!}
+                  src={optimizeImg(t.fullImg?.url || t.fullImgs?.[0]?.url, 600)}
                   alt={t.name}
                   className="tl-img"
                   style={{

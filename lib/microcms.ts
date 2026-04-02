@@ -219,3 +219,12 @@ export async function getPage(slug: string) {
     return null;
   }
 }
+
+// ---------- Image Optimization Helper ----------
+/** microCMS画像URLにリサイズ・WebP変換パラメータを付与 */
+export function optimizeImg(url: string | undefined, width: number, quality = 80): string {
+  if (!url) return "";
+  if (!url.includes("microcms-assets.io")) return url;
+  const sep = url.includes("?") ? "&" : "?";
+  return `${url}${sep}w=${width}&q=${quality}&fm=webp`;
+}

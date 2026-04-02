@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import type { Talent } from "@/lib/microcms";
+import { type Talent, optimizeImg } from "@/lib/microcms";
 
 type Props = { talents: Talent[] };
 
@@ -112,7 +112,7 @@ export default function Talents({ talents }: Props) {
                 {(t.fullImg?.url || t.fullImgs?.[0]?.url) && (
                 <div className="absolute inset-0 flex items-start justify-center overflow-hidden">
                   <img
-                    src={(t.fullImg?.url || t.fullImgs?.[0]?.url)!}
+                    src={optimizeImg(t.fullImg?.url || t.fullImgs?.[0]?.url, 600)}
                     alt={t.name}
                     className="char-full relative z-10"
                     style={{
@@ -130,7 +130,7 @@ export default function Talents({ talents }: Props) {
                 {t.sdImg?.url && (
                 <div className="absolute z-20 pointer-events-none" style={{ bottom: "0.5rem", right: "0.75rem" }}>
                   <img
-                    src={t.sdImg.url}
+                    src={optimizeImg(t.sdImg.url, 200)}
                     alt={`${t.name} SD`}
                     className="char-sd"
                     style={{

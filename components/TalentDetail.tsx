@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import type { Talent } from "@/lib/microcms";
+import { type Talent, optimizeImg } from "@/lib/microcms";
 
 type Props = {
   talent: Talent;
@@ -277,7 +277,7 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           >
             {allImages.length > 0 && (
             <img
-              src={allImages[slideIdx]?.url}
+              src={optimizeImg(allImages[slideIdx]?.url, 1200)}
               alt={talent.name}
               style={{
                 maxHeight: "100%", objectFit: "contain", objectPosition: "bottom center",
@@ -383,7 +383,7 @@ export default function TalentDetail({ talent, prev, next, index = 0 }: Props) {
           <div style={{ animation: "float 3s ease-in-out infinite" }}>
             {talent.sdImg?.url && (
             <img
-              src={talent.sdImg.url}
+              src={optimizeImg(talent.sdImg.url, 300)}
               alt={`${talent.name} SD`}
               style={{
                 height: 260, objectFit: "contain",
