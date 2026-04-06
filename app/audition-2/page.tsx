@@ -65,7 +65,7 @@ export default async function Audition2Page() {
       <Header />
       <FloatingCTA />
       <main>
-        <AuditionLP talents={talents} />
+        <AuditionLP talents={talents} lineUrl="https://lin.ee/otetko2" />
       </main>
       <Footer />
     </>

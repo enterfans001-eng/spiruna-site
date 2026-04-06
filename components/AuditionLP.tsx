@@ -193,7 +193,7 @@ const kvImages = [
   { src: "/lp-kv2.webp", srcPc: "/lp-kv2-pc.webp", alt: "一期生大募集" },
 ];
 
-function HeroSlider({ heroRef }: { heroRef: React.RefObject<HTMLElement | null> }) {
+function HeroSlider({ heroRef, lineUrl }: { heroRef: React.RefObject<HTMLElement | null>; lineUrl?: string }) {
   const [current, setCurrent] = useState(0);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -219,7 +219,7 @@ function HeroSlider({ heroRef }: { heroRef: React.RefObject<HTMLElement | null> 
       style={{ background: "var(--bg)" }}
     >
       <a
-        href={LINE_URL}
+        href={lineUrl || LINE_URL}
         target="_blank"
         rel="noopener noreferrer"
         onClick={trackCTAClick}
@@ -309,9 +309,10 @@ function HeroSlider({ heroRef }: { heroRef: React.RefObject<HTMLElement | null> 
 
 /* ─── Main Component ─── */
 
-type Props = { talents: Talent[] };
+type Props = { talents: Talent[]; lineUrl?: string };
 
-export default function AuditionLP({ talents }: Props) {
+export default function AuditionLP({ talents, lineUrl }: Props) {
+  const LINE = lineUrl || LINE_URL;
   const heroRef = useRef<HTMLElement>(null);
   const meritRef = useRef<HTMLElement>(null);
   const creatorsRef = useRef<HTMLElement>(null);
@@ -379,7 +380,7 @@ export default function AuditionLP({ talents }: Props) {
       `}</style>
 
       {/* ═══════ HERO — KV Image Slider ═══════ */}
-      <HeroSlider heroRef={heroRef} />
+      <HeroSlider heroRef={heroRef} lineUrl={LINE} />
 
       {/* ═══════ WHY SPIRUNA ═══════ */}
       <section
@@ -464,7 +465,7 @@ export default function AuditionLP({ talents }: Props) {
 
           <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
             <a
-              href={LINE_URL}
+              href={LINE}
               target="_blank"
               rel="noopener noreferrer"
               onClick={trackCTAClick}
@@ -733,7 +734,7 @@ export default function AuditionLP({ talents }: Props) {
 
           <div className="reveal delay-3" style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
             <a
-              href={LINE_URL}
+              href={LINE}
               target="_blank"
               rel="noopener noreferrer"
               onClick={trackCTAClick}
