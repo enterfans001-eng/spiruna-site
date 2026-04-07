@@ -45,6 +45,17 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // wp-admin / wp-login.php は media.spiruna.jp に直接リダイレクト（プロキシしない）
+      {
+        source: "/media/wp-admin/:path*",
+        destination: "https://media.spiruna.jp/wp-admin/:path*",
+        permanent: false,
+      },
+      {
+        source: "/media/wp-login.php",
+        destination: "https://media.spiruna.jp/wp-login.php",
+        permanent: false,
+      },
       // www → non-www リダイレクト
       {
         source: "/:path*",
