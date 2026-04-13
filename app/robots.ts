@@ -7,6 +7,9 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://spiruna.jp/sitemap.xml",
+    sitemap: [
+      "https://spiruna.jp/sitemap.xml",
+      "https://spiruna.jp/media/wp-sitemap.xml",
+    ],
   };
 }
