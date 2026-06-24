@@ -6,12 +6,10 @@ import Footer from "@/components/Footer";
 import { type Talent, optimizeImg } from "@/lib/microcms";
 
 type Props = { talents: Talent[] };
-type SortKey = "default" | "name" | "nameEn" | "debut" | "followers";
 
 export default function TalentsList({ talents }: Props) {
   const [loaded, setLoaded] = useState(false);
   const [search, setSearch] = useState("");
-  const [sort, setSort] = useState<SortKey>("default");
 
   useEffect(() => {
     const t = setTimeout(() => setLoaded(true), 100);
@@ -28,17 +26,8 @@ export default function TalentsList({ talents }: Props) {
         (t.generation || "").toLowerCase().includes(q)
       );
     }
-    if (sort === "name") {
-      result = [...result].sort((a, b) => a.name.localeCompare(b.name, "ja"));
-    } else if (sort === "nameEn") {
-      result = [...result].sort((a, b) => a.nameEn.localeCompare(b.nameEn));
-    } else if (sort === "debut") {
-      result = [...result].sort((a, b) => (a.debutDate || "").localeCompare(b.debutDate || ""));
-    } else if (sort === "followers") {
-      result = [...result].sort((a, b) => (b.tiktokFollowers || b.followers || 0) - (a.tiktokFollowers || a.followers || 0));
-    }
     return result;
-  }, [talents, search, sort]);
+  }, [talents, search]);
 
   return (
     <>
@@ -143,33 +132,22 @@ export default function TalentsList({ talents }: Props) {
             }}
           />
           <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-            {([
-              { key: "default", label: "デフォルト" },
-              { key: "followers", label: "フォロワー順" },
-              { key: "name", label: "名前順" },
-              { key: "debut", label: "デビュー順" },
-            ] as { key: SortKey; label: string }[]).map((s) => (
-              <button
-                key={s.key}
-                className="tl-sort-btn"
-                onClick={() => setSort(s.key)}
-                style={{
-                  padding: "0.45rem 1rem",
-                  fontSize: "0.7rem", letterSpacing: "0.1em",
-                  background: sort === s.key ? "var(--red)" : "transparent",
-                  color: sort === s.key ? "#fff" : "var(--text-muted)",
-                  border: sort === s.key ? "1px solid var(--red)" : "1px solid rgba(255,255,255,0.15)",
-                }}
-              >
-                {s.label}
-              </button>
-            ))}
+            <button
+              className="tl-sort-btn"
+              type="button"
+              aria-disabled="true"
+              style={{
+                padding: "0.45rem 1rem",
+                fontSize: "0.7rem", letterSpacing: "0.1em",
+                background: "var(--red)",
+                color: "#fff",
+                border: "1px solid var(--red)",
+                cursor: "default",
+              }}
+            >
+              デフォルト
+            </button>
           </div>
-          {sort === "followers" && (
-            <p style={{ fontSize: "0.65rem", color: "var(--text-muted)", marginTop: "0.25rem", width: "100%" }}>
-              ※月毎更新
-            </p>
-          )}
         </div>
 
         {/* Result count */}
