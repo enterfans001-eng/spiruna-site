@@ -122,6 +122,17 @@ test('disabled flag makes zero network calls; cron requires a strong configured 
   assert.equal(cronAuthorized('Bearer ' + 'y'.repeat(32), 'x'.repeat(32)), false);
 });
 
+test('Vercel Marketplace KV variable names work without copying integration secrets', async () => {
+  const marketplace = { ...env, UPSTASH_REDIS_REST_URL: undefined, UPSTASH_REDIS_REST_TOKEN: undefined,
+    KV_REST_API_URL: env.UPSTASH_REDIS_REST_URL, KV_REST_API_TOKEN: env.UPSTASH_REDIS_REST_TOKEN };
+  const f = createForwarder(marketplace, async (url, options) => {
+    assert.equal(String(url), 'https://test.upstash.io');
+    assert.equal(options.headers.Authorization, 'Bearer test-only');
+    return Response.json({ result: 1 });
+  });
+  assert.equal(await f.stage(payload), true);
+});
+
 async function runRoute(source, sendResult, enabled = true) {
   const mail = [], events = [], jobs = [];
   class Resend { emails = { send: async value => { mail.push(value); events.push('send'); return sendResult; } }; }
